@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0-beta5",
+    "description": "MVC.JQuery.Datatables",
+    "authors": [ "Thom Kiesewetter" ],
+    "tags": [ "MVC","Datatables","JQuery" ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "webroot": "wwwroot",
+
+    "dependencies": {
+        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta5",
+        "System.Linq.Dynamic": "1.0.4"
+    },
+
+    "frameworks": {
+        "dnx451": {
+        }
+    }
+}
