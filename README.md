@@ -1,4 +1,4 @@
-# Mvc.JQuery.Datatables (jquery.datatables for  MVC6 and taghelpers)
+# Mvc.JQuery.Datatables (for MVC6 with taghelpers)
 
 ##Install Package
 
