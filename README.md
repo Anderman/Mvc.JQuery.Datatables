@@ -1,11 +1,10 @@
-# Mvc.JQuery.Datatables
-mvc.jquery.datatables
-jquery.datatables with MVC6 and taghelpers
+# Mvc.JQuery.Datatables (jquery.datatables for  MVC6 and taghelpers)
 
-Package contains a generic Dynamic linq query to fill the jquery.datatables
+##Install Package
 
+PM> Install-Package Mvc6.JQuery.Datatables -Pre
 
-Create the AJAX response for JQuery.datatable 
+## 1. Create the AJAX response for JQuery.datatable 
 ```
         public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)
         {
@@ -15,7 +14,7 @@ Create the AJAX response for JQuery.datatable
 ```
 
 
-Razor Table definition
+## 2. Razor Table definition
 ```
 <table id="example1" class="datatables display"  stateSave="true" cellspacing="0" width="100%">
     <thead>
