@@ -4,6 +4,17 @@ jquery.datatables with MVC6 and taghelpers
 
 Package contains a generic Dynamic linq query to fill the jquery.datatables
 
+
+Create the AJAX response for JQuery.datatable 
+```
+        public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)
+        {
+            var data = new DataTables().GetRepsonse(Ctx.Users, dTRequest);
+            return new JsonResult(data);  
+        }
+```
+
+
 Razor Table definition
 ```
 <table id="example1" class="datatables display"  stateSave="true" cellspacing="0" width="100%">
