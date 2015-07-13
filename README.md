@@ -1,10 +1,10 @@
-# Mvc.JQuery.Datatables (for MVC6 with taghelpers)
+# Mvc.JQuery.Datatables (MVC6 with taghelpers)
 
-##Install Package
+##1. Install Package
 
 PM> Install-Package Mvc6.JQuery.Datatables -Pre
 
-## 1. Create the AJAX response for JQuery.datatable 
+##2. Create the AJAX response for JQuery.datatable 
 ```
         public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)
         {
@@ -14,7 +14,8 @@ PM> Install-Package Mvc6.JQuery.Datatables -Pre
 ```
 
 
-## 2. Razor Table definition
+##3. Define MVC6 Table definition.
+Taghelper intellisense available in taghelper library
 ```
 <table id="example1" class="datatables display"  stateSave="true" cellspacing="0" width="100%">
     <thead>
@@ -29,7 +30,7 @@ PM> Install-Package Mvc6.JQuery.Datatables -Pre
 </table>
 ```
 
-Generic javascript for all tables
+##4 Create only one javascript for all your data tables tables
 ```
 $(document).ready(function () {
     var getColumns = function (datatable) {
