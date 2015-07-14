@@ -6,77 +6,91 @@ PM> Install-Package Mvc6.JQuery.Datatables -Pre
 
 ##2. Create the AJAX response for JQuery.datatable 
 ```
-        public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)
-        {
-            var data = new DataTables().GetRepsonse(Ctx.Users, dTRequest);
-            return new JsonResult(data);  
-        }
+        public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)=>
+            new DataTables().GetJSonResult(Ctx.Users, dTRequest);
 ```
 
 
-##3. Define MVC6 Table definition.
-Taghelper intellisense available in taghelper library
+##3. create your view.
+
 ```
-<table id="example1" class="datatables display"  stateSave="true" cellspacing="0" width="100%">
+<table id="example1" class="datatables display"
+       asp-datatables-language='getLanguage'
+       asp-datatables-lengthmenu='getLengthMenu'
+       asp-datatables-url="/Account/GetAll"
+       asp-datatables-savestate="true" cellspacing="0" width="100%">
     <thead>
         <tr>
-            <th asp-for="Email" column-renderFunction="createMailToLink(data)"></th>
-            <th asp-for="EmailConfirmed"  ></th>
-            <th asp-for="LockoutEnd" column-renderFunction="formatDate(data,'YYYY-DD-mm hh:mm:ss')"></th>
-            <th asp-for="TwoFactorEnabled"></th>
-            <th asp-for="UserName"></th>
+            <th asp-datatables-data="Email" asp-datatables-render="createMailToLink"></th>
+            <th asp-datatables-data="EmailConfirmed"></th>
+            <th asp-datatables-data="LockoutEnd" asp-datatables-render="formatDate" asp-datatables-render-arg="YYYY-DD-mm hh:mm:ss"></th>
+            <th asp-datatables-data="TwoFactorEnabled" asp-datatables-orderable="false"></th>
+            <th asp-datatables-data="UserName" asp-datatables-searchable="false"></th>
         </tr>
     </thead>
 </table>
 ```
 
-##4 Create only one javascript for all your data tables tables
+##4 Add the following javascript to yout project
 ```
-$(document).ready(function () {
-    var getColumns = function (datatable) {
-        var columns = [];
-        $($(datatable).find("thead > tr > th[column-data]")).each(function () {
-            var renderFunction = $(this).attr("column-renderFunction");
-            if (renderFunction) {
-                var sRender = new Function("data", "type", "full", "meta", "return " + renderFunction);
-                columns.push({ data: $(this).attr("column-data"), render: sRender });
-            }
-            else
-                columns.push({ data: $(this).attr("column-data") });
-        });
-        return columns;
-    }
-    var getLanguage = function (datatable) {
-        var v = $(datatable).attr("datatables-lang")
-        var language = JSON.parse(v);
-        return language
-    }
-    var getLengthMenu = function (datatable) {
-        var lengthMenu = [];
-        var v = $(datatable).attr("datatables-lengthMenu")
-        lengthMenu = JSON.parse(v);
-        return lengthMenu;
-    }
-    $('table.datatables').each(function () {
-        $(this).dataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "/Account/GetAll",
-                "type": "POST",
-                "contentType": "application/json; charset=utf-8",
-                "dataType": "json",
-                "data": function (d) {
-                    return JSON.stringify(d);
+ //Pre-defined functions. Create your own functions outside of this script so this script is the same for each jquery-datatable
+
+        var mvc = { "JQuery": { "Datatables": {} } };
+
+        mvc.JQuery.Datatables.createMailToLink = function (data) {
+            return '<a href=mailto:' + data + '>' + data + '</a>';
+        }
+        mvc.JQuery.Datatables.formatDate = function (data, type, full, meta) {
+            return moment(data).format(meta.settings.aoColumns[meta.col].mvc6Par || "YY-DD-mm hh:mm:ss");
+        }
+        mvc.JQuery.Datatables.noRender = function (data) { return data; }
+        mvc.JQuery.Datatables.returnNull = function (data) { return null; }
+        mvc.JQuery.Datatables.getLengthMenu = function () { return [[25, 50, 100, -1], [25, 50, 100, "All"]] };
+        mvc.JQuery.Datatables.getLanguage = function () { return {} };
+        mvc.JQuery.Datatables.success = function (data, textStatus, jqXHR) { };
+        mvc.JQuery.Datatables.error = function (jqXHR, textStatus, errorThrown) { alert(errorThrown) };
+
+        // Bind every table with the class datatable
+        // Read all information that can be used for data request from the table and th tags
+        $(document).ready(function () {
+            $('table.datatables').each(function () {
+                var columns = [];
+                $($(this).find("thead > tr > th[data-data]")).each(function () {
+                    var column = {};
+                    column.data = $(this).attr("data-data");
+                    column.render = (mvc.JQuery.Datatables[$(this).attr("data-render") || "noRender"]);
+                    column.mvc6Par = $(this).attr("data-render-arg");
+                    column.orderable = $(this).attr("data-orderable") != 'False';
+                    column.searchable = $(this).attr("data-searchable") != 'False';
+                    columns.push(column);
+                });
+                var root = {
+                    processing: true,
+                    serverSide: true,
+                    fnServerData: function (sSource, aoData, fnCallback) {
+                        for (var DataTableRequest = {}, i = 0 ; i < aoData.length; i++) DataTableRequest[aoData[i].name] = aoData[i].value;
+                        $.ajax({
+                            url: $(this).attr("data-url"),
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(DataTableRequest),
+                            success: function (data, textStatus, jqXHR) {
+                                (mvc.JQuery.Datatables[$(this).attr("data-succes") || "success"])(data, textStatus, jqXHR);
+                                fnCallback(data, textStatus, jqXHR);
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                (mvc.JQuery.Datatables[$(this).attr("data-error") || "error"])(jqXHR, textStatus, errorThrown);
+                            },
+                        })
+                    },
+                    columns: columns,
+                    language: (mvc.JQuery.Datatables[$(this).attr("data-language") || "returnNull"])(),
+                    lengthMenu: (mvc.JQuery.Datatables[$(this).attr("data-lengthMenu") || "returnNull"])(),
                 }
-            },
-            "columns": getColumns(this),
-            "language": getLanguage(this),
-            "lengthMenu": getLengthMenu(this)
-            
-        })
-    });
-});
+                $(this).dataTable(root)
+            });
+        });
 ```
-##5. result
+##5. Run your project
 ![](http://snag.gy/aETVt.jpg)
