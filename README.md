@@ -4,7 +4,7 @@
 
 PM> Install-Package Mvc6.JQuery.Datatables -Pre
 
-##2. Create the AJAX response for JQuery.datatable 
+##2. Create a controller action in your controller 
 ```
         public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)=>
             new DataTables().GetJSonResult(Ctx.Users, dTRequest);
