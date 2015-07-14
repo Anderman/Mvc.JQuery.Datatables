@@ -98,13 +98,13 @@ $(document).ready(function () {
 
 
 ## Why this package.
-There are more MVC pacakges but they have a different appraoch which doesn't make use of the taghelpers
+There are more MVC packges but they have a different approach.
 problem with other packages.
-* layout is defined in c# for column redering and field selection
+* layout is defined in c#, view and javascript
 * Field must be specified in view, controller, javascript
 
 This package will make the use of jquery.datatable easier by.
 * Define your fields only in your view (th tag)
 * Use only one javascript for all your tables
-* Make use of taghelpers for your fields and other options you can set on column and table
+* Make use of taghelpers for your fields and other options and use intellisense to support your design
 
