@@ -1,11 +1,12 @@
 using System.Linq;
 using Mvc.JQuery.Datatables.CSharpModel;
+using Microsoft.AspNet.Mvc;
 
 namespace Mvc.JQuery.Datatables
 {
     public class DataTables
     {
-        public DatatablesRepsonse GetRepsonse<TSource>(IQueryable<TSource> query, DataTablesRequest param)
+        public JsonResult GetJSonResult<TSource>(IQueryable<TSource> query, DataTablesRequest param)
         {
             var totalRecords = query.Count(); //Execute this query
 
@@ -23,7 +24,7 @@ namespace Mvc.JQuery.Datatables
                 draw = param.Draw,
                 data = data.Cast<object>().ToArray(),
             };
-            return result;
+            return new JsonResult(result);
         }
     }
 }

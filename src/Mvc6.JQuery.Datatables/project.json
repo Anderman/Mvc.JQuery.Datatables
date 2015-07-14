@@ -9,6 +9,7 @@
 
     "dependencies": {
         "Microsoft.AspNet.Mvc.Core": "6.0.0-beta5",
+        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta5",
         "System.Linq.Dynamic": "1.0.4"
     },
 
