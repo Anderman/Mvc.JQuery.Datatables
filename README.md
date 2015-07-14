@@ -14,26 +14,9 @@ __add the taghelper support to _ViewImports.cshtml and/or _GlobalImport.cshtml__
             new DataTables().GetJSonResult(Ctx.Users, dTRequest);
 ```
 
-
 ##3. create a view.
+![](http://snag.gy/IMgeL.jpg)
 
-```
-<table id="example1" class="datatables display"
-       asp-datatables-language='getLanguage'
-       asp-datatables-lengthmenu='getLengthMenu'
-       asp-datatables-url="/Account/GetAll"
-       asp-datatables-savestate="true" cellspacing="0" width="100%">
-    <thead>
-        <tr>
-            <th asp-datatables-data="Email" asp-datatables-render="createMailToLink"></th>
-            <th asp-datatables-data="EmailConfirmed"></th>
-            <th asp-datatables-data="LockoutEnd" asp-datatables-render="formatDate" asp-datatables-render-arg="YYYY-DD-mm hh:mm:ss"></th>
-            <th asp-datatables-data="TwoFactorEnabled" asp-datatables-orderable="false"></th>
-            <th asp-datatables-data="UserName" asp-datatables-searchable="false"></th>
-        </tr>
-    </thead>
-</table>
-```
 
 ##4 Add the following javascript to yout project
 ```
