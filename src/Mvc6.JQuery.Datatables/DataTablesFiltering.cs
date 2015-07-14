@@ -62,7 +62,8 @@ namespace Mvc.JQuery.Datatables
                     var property = properties.Where(c => c.Name == sc.data).First();
                     builder.addFilter(property, searchValue);
                 }
-                query = query.Where(string.Join(" or ", builder.DynamicLinqString), builder.DynamicLinqParameters.ToArray());
+                if (builder.DynamicLinqParameters.Any())
+                    query = query.Where(string.Join(" or ", builder.DynamicLinqString), builder.DynamicLinqParameters.ToArray());
             }
             return query;
         }
