@@ -11,7 +11,7 @@ PM> Install-Package Mvc6.JQuery.Datatables -Pre
 ```
 
 
-##3. create your view.
+##3. create a view.
 
 ```
 <table id="example1" class="datatables display"
@@ -95,3 +95,16 @@ $(document).ready(function () {
 ```
 ##5. Run your project
 ![](http://snag.gy/aETVt.jpg)
+
+
+## Why this package.
+There are more MVC pacakges but they have a different appraoch which doesn't make use of the taghelpers
+problem with other packages.
+* layout is defined in c# for column redering and field selection
+* Field must be specified in view, controller, javascript
+
+This package will make the use of jquery.datatable easier by.
+* Define your fields only in your view (th tag)
+* Use only one javascript for all your tables
+* Make use of taghelpers for your fields and other options you can set on column and table
+
