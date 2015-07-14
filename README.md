@@ -15,7 +15,7 @@ __add the taghelper support to _ViewImports.cshtml and/or _GlobalImport.cshtml__
 ```
 
 ##3. create a view.
-![](http://snag.gy/IMgeL.jpg)
+![](http://snag.gy/10cQg.jpg)
 
 
 ##4 Add the following javascript to yout project
