@@ -3,7 +3,9 @@
 ##1. Install Package
 
 PM> Install-Package Mvc6.JQuery.Datatables -Pre
-### add the taghelper support to _ViewImports.cshtml and/or _GlobalImport.cshtml  
+
+__add the taghelper support to _ViewImports.cshtml and/or _GlobalImport.cshtml__
+
 @addTagHelper "*, Mvc6.JQuery.Datatables"
 
 ##2. Create a controller action in your controller 
