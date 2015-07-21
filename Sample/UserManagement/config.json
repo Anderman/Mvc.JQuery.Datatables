@@ -1,0 +1,10 @@
+{
+  "AppSettings": {
+    "SiteTitle": "UserManagement"
+  },
+  "Data": {
+    "DefaultConnection": {
+      "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=aspnet5-UserManagement-8485cef5-b44a-4daa-a778-3522dc6b16ba;Trusted_Connection=True;MultipleActiveResultSets=true"
+    }
+  }
+}
