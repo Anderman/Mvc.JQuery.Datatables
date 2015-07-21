@@ -2,7 +2,7 @@
     "version": "1.0.0-beta5",
     "description": "MVC.JQuery.Datatables",
     "authors": [ "Thom Kiesewetter" ],
-    "tags": [ "MVC","Datatables","JQuery" ],
+    "tags": [ "MVC", "Datatables", "JQuery" ],
     "projectUrl": "",
     "licenseUrl": "",
     "webroot": "wwwroot",
@@ -10,7 +10,8 @@
     "dependencies": {
         "Microsoft.AspNet.Mvc.Core": "6.0.0-beta5",
         "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta5",
-        "System.Linq.Dynamic": "1.0.4"
+        "System.Linq.Dynamic": "1.0.4",
+        "TagHelpers": "1.0.0-*"
     },
 
     "frameworks": {

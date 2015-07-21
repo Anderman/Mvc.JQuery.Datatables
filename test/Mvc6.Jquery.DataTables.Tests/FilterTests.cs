@@ -34,22 +34,22 @@ namespace Mvc.JQuery.Datatables.Tests
 
         public void SearchQueryTests(string searchString, string columnName, bool returnsResult)
         {
-            var _TestData = new TestData(columnName, searchString);
-            var result = new DataTables().GetRepsonse(_TestData.queryable, _TestData.dataTablesRequest);
+            var testData = new TestData(columnName, searchString);
+            var result = new DataTables().GetResponse(testData.Queryable, testData.DataTablesRequest);
 
             var data = result;
-            Assert.Equal(returnsResult, data.recordsFiltered > 0);
+            Assert.Equal(returnsResult, data.RecordsFiltered > 0);
         }
     }
     public class TestData
     {
-        public DataTablesRequest dataTablesRequest;
-        public IQueryable<SomeModel> queryable;
-        public Tuple<string, ModelProperty>[] columns;
+        public DataTablesRequest DataTablesRequest;
+        public IQueryable<SomeModel> Queryable;
+        public Tuple<string, ModelProperty>[] Columns;
         public TestData(string columnName, string searchString)
         {
 
-            queryable = new List<SomeModel>()
+            Queryable = new List<SomeModel>()
             {
                 new SomeModel()
                 {
@@ -73,7 +73,7 @@ namespace Mvc.JQuery.Datatables.Tests
                 }
             }.AsQueryable();
 
-            dataTablesRequest = new DataTablesRequest()
+            DataTablesRequest = new DataTablesRequest()
             {
                 Length = 1,
                 Draw = 1,
@@ -83,13 +83,13 @@ namespace Mvc.JQuery.Datatables.Tests
                 Search = new DataTablesRequest.SearchT()
             };
 
-            columns = ModelProperties<SomeModel>.Properties.Select(p =>
-                    Tuple.Create(p.Name, new ModelProperty(p.PropertyInfo, new Attribute[] { }))).ToArray();
-            dataTablesRequest.columns = columns.Select(c => new DataTablesRequest.ColumnT()
+            Columns = ModelProperties<SomeModel>.Properties.Select(p =>
+                    Tuple.Create(p.Name, new ModelProperty(p.PropertyInfo))).ToArray();
+            DataTablesRequest.Columns = Columns.Select(c => new DataTablesRequest.ColumnT()
             {
-                searchable = true,
+                Searchable = true,
                 Orderable = true,
-                data = c.Item1,
+                Data = c.Item1,
                 Search = new DataTablesRequest.SearchT() { Regex = false, Value = "" }
             }).ToArray();
 
@@ -99,9 +99,9 @@ namespace Mvc.JQuery.Datatables.Tests
                 Regex = false
             };
             if (columnName.Any())
-                dataTablesRequest.columns.Where(c => c.data == columnName).First().Search = search;
+                DataTablesRequest.Columns.Where(c => c.Data == columnName).First().Search = search;
             else
-                dataTablesRequest.Search = search;
+                DataTablesRequest.Search = search;
         }
     }
 }

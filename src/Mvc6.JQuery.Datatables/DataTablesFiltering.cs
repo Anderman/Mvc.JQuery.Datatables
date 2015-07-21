@@ -9,11 +9,11 @@ namespace Mvc.JQuery.Datatables
 {
     internal static class DataTablesFiltering
     {
-        public static IQueryable<T> ApplyFilterAndSort<T>(IQueryable<T> query, ModelProperty[] Properties, DataTablesRequest dtRequest)
+        public static IQueryable<T> ApplyFilterAndSort<T>(IQueryable<T> query, ModelProperty[] properties, DataTablesRequest dtRequest)
         {
-            query = ApplyTableFilter(query, Properties, dtRequest);
-            query = ApplyColumnFilter(query, Properties, dtRequest);
-            query = ApplyOrderBy(query, Properties, dtRequest);
+            query = ApplyTableFilter(query, properties, dtRequest);
+            query = ApplyColumnFilter(query, properties, dtRequest);
+            query = ApplyOrderBy(query, properties, dtRequest);
             return query;
         }
 
@@ -40,12 +40,12 @@ namespace Mvc.JQuery.Datatables
 
         private static IQueryable<T> ApplyColumnFilter<T>(IQueryable<T> query, ModelProperty[] properties, DataTablesRequest dtRequest)
         {
-            foreach (var sc in dtRequest.columns.Where(s => s.searchable == true && s.Search.Value != "").Select(s => s))
+            foreach (var sc in dtRequest.Columns.Where(s => s.Searchable == true && s.Search.Value != "").Select(s => s))
             {
                 var searchValue = sc.Search.Value;
-                var property = properties.Where(c => c.Name == sc.data).First();
+                var property = properties.Where(c => c.Name == sc.Data).First();
                 var builder = new DataTablesWhereBuilder();
-                builder.addFilter(property, searchValue);
+                builder.AddFilter(property, searchValue);
                 query = query.Where(string.Join(" or ", builder.DynamicLinqString), builder.DynamicLinqParameters.ToArray());
             }
             return query;
@@ -57,10 +57,10 @@ namespace Mvc.JQuery.Datatables
             var searchValue = dtRequest.Search.Value;
             if (!string.IsNullOrWhiteSpace(searchValue))
             {
-                foreach (var sc in dtRequest.columns.Where(s => s.searchable == true).Select(s => s))
+                foreach (var sc in dtRequest.Columns.Where(s => s.Searchable == true).Select(s => s))
                 {
-                    var property = properties.Where(c => c.Name == sc.data).First();
-                    builder.addFilter(property, searchValue);
+                    var property = properties.Where(c => c.Name == sc.Data).First();
+                    builder.AddFilter(property, searchValue);
                 }
                 if (builder.DynamicLinqParameters.Any())
                     query = query.Where(string.Join(" or ", builder.DynamicLinqString), builder.DynamicLinqParameters.ToArray());

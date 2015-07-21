@@ -8,14 +8,14 @@ namespace Mvc.JQuery.Datatables
     {
         private enum SearchType
         {
-            contains = 0,
-            endsWith = 1,
-            startsWith = 2,
-            equal = 3
+            Contains = 0,
+            EndsWith = 1,
+            StartsWith = 2,
+            Equal = 3
         }
         public List<object> DynamicLinqParameters = new List<object>();
         public List<string> DynamicLinqString = new List<string>();
-        public void addFilter(ModelProperty modelProperty, string regSearchValues)
+        public void AddFilter(ModelProperty modelProperty, string regSearchValues)
         {
             foreach (var regSearch in regSearchValues.Split('|'))
             {
@@ -24,8 +24,8 @@ namespace Mvc.JQuery.Datatables
                 if (search == null || search == ".*") return;
 
                 if (modelProperty.Type.IsString()) AddStringFilter(modelProperty, search, searchType);
-                if (modelProperty.Type.IsEnum) addEnumFilter(modelProperty, search, searchType);
-                if (modelProperty.Type.isBool()) AddBoolFilter(modelProperty, search, searchType);
+                if (modelProperty.Type.IsEnum) AddEnumFilter(modelProperty, search, searchType);
+                if (modelProperty.Type.IsBool()) AddBoolFilter(modelProperty, search, searchType);
                 if (modelProperty.Type.IsDateTimeType()) AddDateTimeFilter(modelProperty, search, searchType);
                 if (modelProperty.Type.IsNumericType()) AddNumericFilter(modelProperty, search, searchType);
                 if (modelProperty.Type.IsDateTimeOffsetType()) AddDateTimeOffsetFilter(modelProperty, search, searchType);
@@ -132,7 +132,7 @@ namespace Mvc.JQuery.Datatables
 
         }
 
-        private void addEnumFilter(ModelProperty modelProperty, string search, SearchType searchType)
+        private void AddEnumFilter(ModelProperty modelProperty, string search, SearchType searchType)
         {
             object value = null;
             if (TryParseValue(modelProperty.Type, search, out value))
@@ -149,13 +149,13 @@ namespace Mvc.JQuery.Datatables
 
             switch (searchType)
             {
-                case SearchType.equal:
+                case SearchType.Equal:
                     DynamicLinqString.Add(string.Format("{0} ==  {1}", modelProperty.Name, parameterArg));
                     break;
-                case SearchType.startsWith:
+                case SearchType.StartsWith:
                     DynamicLinqString.Add(string.Format("({0}.StartsWith({1}))", modelProperty.Name, parameterArg));
                     break;
-                case SearchType.endsWith:
+                case SearchType.EndsWith:
                     DynamicLinqString.Add(string.Format("({0}.EndsWith({1}))", modelProperty.Name, parameterArg));
                     break;
                 default:
@@ -198,7 +198,7 @@ namespace Mvc.JQuery.Datatables
     }
     public static class TypeExtensions
     {
-        public static bool isBool(this Type type) =>
+        public static bool IsBool(this Type type) =>
             type == typeof(bool) ||
             type == typeof(bool?);
         public static bool IsNumericType(this Type type)

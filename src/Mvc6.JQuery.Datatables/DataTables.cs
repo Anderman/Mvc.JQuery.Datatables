@@ -6,25 +6,29 @@ namespace Mvc.JQuery.Datatables
 {
     public class DataTables
     {
-        public JsonResult GetJSonResult<TSource>(IQueryable<TSource> query, DataTablesRequest param)
+        public DatatablesRepsonse GetResponse<TSource>(IQueryable<TSource> query, DataTablesRequest param)
         {
             var totalRecords = query.Count(); //Execute this query
 
             var modelProperties = ModelProperties<TSource>.Properties;
-            query= DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
+            query = DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
             var totalDisplayRecords = query.Count(); //Execute this query
 
             var skipped = query.Skip(param.Start);
             var data = (param.Length <= 0 ? skipped : skipped.Take(param.Length)).ToArray(); //Execute this query
 
-            var result = new DatatablesRepsonse
+            return new DatatablesRepsonse
             {
-                recordsTotal = totalRecords,
-                recordsFiltered = totalDisplayRecords,
-                draw = param.Draw,
-                data = data.Cast<object>().ToArray(),
+                RecordsTotal = totalRecords,
+                RecordsFiltered = totalDisplayRecords,
+                Draw = param.Draw,
+                Data = data.Cast<object>().ToArray(),
             };
-            return new JsonResult(result);
+        }
+
+        public JsonResult GetJSonResult<TSource>(IQueryable<TSource> query, DataTablesRequest param)
+        {
+            return new JsonResult(GetResponse(query, param));
         }
     }
 }

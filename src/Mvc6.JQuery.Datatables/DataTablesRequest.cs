@@ -12,7 +12,7 @@ namespace Mvc.JQuery.Datatables
 
         public List<OrderT> Order { get; set; }
 
-        public ColumnT[] columns { get; set; }
+        public ColumnT[] Columns { get; set; }
         public class OrderT
         {
             public int Column;
@@ -21,9 +21,9 @@ namespace Mvc.JQuery.Datatables
 
         public class ColumnT
         {
-            public string data;
-            public string name;
-            public Boolean searchable;
+            public string Data;
+            public string Name;
+            public Boolean Searchable;
             public Boolean Orderable;
             public SearchT Search;
         }

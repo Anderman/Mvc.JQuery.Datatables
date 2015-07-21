@@ -13,8 +13,8 @@ mvc.JQuery.Datatables.noRender = function (data) { return data; }
 mvc.JQuery.Datatables.returnNull = function (data) { return null; }
 mvc.JQuery.Datatables.getLengthMenu = function () { return [[25, 50, 100, -1], [25, 50, 100, "All"]] };
 mvc.JQuery.Datatables.getLanguage = function () { return {} };
-mvc.JQuery.Datatables.success = function (data, textStatus, jqXHR) { };
-mvc.JQuery.Datatables.error = function (jqXHR, textStatus, errorThrown) { alert(errorThrown) };
+mvc.JQuery.Datatables.success = function (data, textStatus, jqXhr) { };
+mvc.JQuery.Datatables.error = function (jqXhr, textStatus, errorThrown) { alert(errorThrown) };
 
 // Bind every table with the class datatable
 // Read all information that can be used for data request from the table and th tags
@@ -34,19 +34,19 @@ $(document).ready(function () {
             processing: true,
             serverSide: true,
             fnServerData: function (sSource, aoData, fnCallback) {
-                for (var DataTableRequest = {}, i = 0 ; i < aoData.length; i++) DataTableRequest[aoData[i].name] = aoData[i].value;
+                for (var dataTableRequest = {}, i = 0 ; i < aoData.length; i++) dataTableRequest[aoData[i].name] = aoData[i].value;
                 $.ajax({
                     url: $(this).attr("data-url"),
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify(DataTableRequest),
-                    success: function (data, textStatus, jqXHR) {
-                        (mvc.JQuery.Datatables[$(this).attr("data-succes") || "success"])(data, textStatus, jqXHR);
-                        fnCallback(data, textStatus, jqXHR);
+                    data: JSON.stringify(dataTableRequest),
+                    success: function (data, textStatus, jqXhr) {
+                        (mvc.JQuery.Datatables[$(this).attr("data-succes") || "success"])(data, textStatus, jqXhr);
+                        fnCallback(data, textStatus, jqXhr);
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        (mvc.JQuery.Datatables[$(this).attr("data-error") || "error"])(jqXHR, textStatus, errorThrown);
+                    error: function (jqXhr, textStatus, errorThrown) {
+                        (mvc.JQuery.Datatables[$(this).attr("data-error") || "error"])(jqXhr, textStatus, errorThrown);
                     },
                 })
             },

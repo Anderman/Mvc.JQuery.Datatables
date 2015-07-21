@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.AspNet.Razor.Runtime.TagHelpers;
-
+using Anderman.TagHelpers;
 namespace Mvc.JQuery.Datatables.TagHelpers
 {
     [TargetElement("th", Attributes = "asp-datatables-data")]
@@ -9,7 +9,7 @@ namespace Mvc.JQuery.Datatables.TagHelpers
     [TargetElement("th", Attributes = "asp-datatables-render-arg")]
     [TargetElement("th", Attributes = "asp-datatables-orderable")]
     [TargetElement("th", Attributes = "asp-datatables-searchable")]
-    public class thTagHelper : TagHelper
+    public class ThTagHelper : TagHelper
     {
         /// <summary>
         /// test sum
@@ -19,27 +19,27 @@ namespace Mvc.JQuery.Datatables.TagHelpers
         [HtmlAttributeName("asp-datatables-render")]
         public string Renderfunction { get; set; }
         [HtmlAttributeName("asp-datatables-render-arg")]
-        public string renderArg { get; set; }
+        public string RenderArg { get; set; }
         [HtmlAttributeName("asp-datatables-orderable")]
-        public bool? orderable { get; set; }
+        public bool? Orderable { get; set; }
         [HtmlAttributeName("asp-datatables-searchable")]
-        public bool? searchable { get; set; }
+        public bool? Searchable { get; set; }
 
         public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             if (For != null)
             {
                 output.Attributes.Add("data-data", For.Name);
-                output.Content.Append(For?.Metadata?.DisplayName ?? For.Name);
+                output.Content.Append(For?.Metadata.GetShortName() ?? For?.Metadata.GetDisplayName());
             }
-            if(Renderfunction!=null)
+            if (Renderfunction != null)
                 output.Attributes.Add("data-render", Renderfunction);
-            if (renderArg != null)
-                output.Attributes.Add("data-render-arg", renderArg);
-            if (orderable != null)
-                output.Attributes.Add("data-orderable", orderable);
-            if (searchable != null)
-                output.Attributes.Add("data-searchable", searchable);
+            if (RenderArg != null)
+                output.Attributes.Add("data-render-arg", RenderArg);
+            if (Orderable != null)
+                output.Attributes.Add("data-orderable", Orderable.ToString().ToLower());
+            if (Searchable != null)
+                output.Attributes.Add("data-searchable", Searchable.ToString().ToLower());
             return Task.FromResult(0);
         }
     }
