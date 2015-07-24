@@ -23,7 +23,7 @@ namespace Mvc.JQuery.Datatables
             {
                 var columnNumber = dtParameters.Order[i].Column;
                 var sortDir = dtParameters.Order[i].Dir;
-                var columnName = dtParameters.Columns[columnNumber].Name;
+                var columnName = dtParameters.Columns[columnNumber].Data;
                 if (i != 0)
                     sortString += ", ";
                 sortString += columnName + " " + sortDir;
