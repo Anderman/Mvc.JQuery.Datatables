@@ -1,0 +1,35 @@
+﻿@model ApplicationUser
+@using Mvc.JQuery.Datatables.TagHelpers
+@using UserManagement.Models
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<form asp-controller="User" asp-action="Edit" method="post" class="form-horizontal" role="form">
+    <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+
+    <div class="modal-content">
+        <h4 class="modal-title" id="myModalLabel">@ViewBag.Title</h4>
+        <button type="button" class="modal-action modal-close waves-effect waves-green btn-flat" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <input asp-for="Id" asp-material-design="true" class="form-control" readonly />
+        <label asp-for="UserName"></label><<input asp-for="UserName" asp-material-design="true" class="form-control" required />
+        <label asp-for="Email"></label><input asp-for="Email" asp-material-design="true" class="form-control" />
+        <label asp-for="EmailConfirmed"></label><input asp-for="EmailConfirmed" asp-material-design="true" class="md-check" />
+        <label asp-for="PhoneNumber"></label><input asp-for="PhoneNumber" asp-material-design="true" class="form-control" />
+        <input asp-for="PhoneNumberConfirmed" asp-material-design="true" class="form-control" />
+        <input asp-for="TwoFactorEnabled" asp-material-design="true" class="form-control" />
+        <input asp-for="LockoutEnabled" asp-material-design="true" class="md-check" />
+        <input asp-for="LockoutEnd" asp-material-design="true" class="form-control" />
+        <input asp-for="AccessFailedCount" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="Logins" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="Claims" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="Roles" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="SecurityStamp" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="NormalizedEmail" asp-material-design="true" class="form-control" readonly />
+        <input asp-for="PasswordHash" asp-material-design="true" class="form-control" readonly />
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default waves-effect waves-light modal-trigger disabled" disabled>Save</button>
+        <button type="button" class="btn modal-close waves-effect waves-light">Cancel</button>
+    </div>
+</form>

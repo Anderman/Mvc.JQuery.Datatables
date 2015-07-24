@@ -1,9 +1,6 @@
-﻿using Microsoft.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
+using Microsoft.Data.Entity;
 using Mvc.JQuery.Datatables;
 using UserManagement.Models;
 
@@ -18,7 +15,7 @@ namespace UserManagement.Controllers
             DbContext = context;
         }
 
-        public ApplicationDbContext DbContext { get; private set; }
+        public ApplicationDbContext DbContext { get; }
         [HttpGet]
         [AllowAnonymous]
         public ViewResult Index()
@@ -31,7 +28,7 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public JsonResult Index([FromBody]DataTablesRequest dTRequest)
         {
-            return new Mvc.JQuery.Datatables.DataTables().GetJSonResult(
+            return new DataTables().GetJSonResult(
                 DbContext.Users
                 //.Include(u => u.Logins)//.Select(l=>l.LoginProvider))
                 //.Include(u => u.Claims)
@@ -49,8 +46,8 @@ namespace UserManagement.Controllers
         public PartialViewResult Edit(string Id)
         {
 
-            var User = DbContext.Users.Include(u => u.Logins).Include(u => u.Claims).Include(u => u.Roles).Where(u => u.Id == Id).FirstOrDefault();
-            return PartialView(User);
+            var user = DbContext.Users.Include(u => u.Logins).Include(u => u.Claims).Include(u => u.Roles).FirstOrDefault(u => u.Id == Id);
+            return PartialView(user);
         }
         [HttpPost]
         [AllowAnonymous]

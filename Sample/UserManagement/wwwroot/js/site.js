@@ -20,7 +20,7 @@ mvc.JQuery.Datatables.ajax.load = function (response, textStatus, xhr) {
         alert(xhr.status + " " + xhr.statusText);
 
 };
-mvc.JQuery.Datatables.tableTools.CUD = function (datatable) {
+mvc.JQuery.Datatables.tableTools.CUD = function (connect) {
     return {
         sRowSelect: "os",
         aButtons: [
@@ -29,13 +29,18 @@ mvc.JQuery.Datatables.tableTools.CUD = function (datatable) {
                 sExtends: "select_single",
                 sButtonClass: "waves-effect waves-light disabled modal-trigger",
                 sButtonText: "Edit",
+                fnInit: function () {
+                    connect.tableTools = this;
+                },
                 fnClick: function (nButton, oConfig) {
                     if (this.fnGetSelected().length === 1) {
+                        var tableTools = this;
                         var id = this.fnGetSelectedData()[0].Id;
                         $("#myModal").ajaxForm({
                             url: '/User/Edit/' + id,
-                            dataChanged: function() {
-                                datatable.obj.fnDraw();
+                            dataChanged: function () {
+                                tableTools.fnSelectNone();//Fix tabletool bug to disable buttons when no row is selected
+                                connect.datatable.fnDraw(false);//redraw the table to show the new data
                             }
                         });
                     }
@@ -49,56 +54,57 @@ mvc.JQuery.Datatables.tableTools.CUD = function (datatable) {
 // Read all information that can be used for data request from the table and th tags
 $(document).ready(function () {
     $('table.datatables').each(function () {
-        var fields = [], columns = [];
-        var datatable = {};
-        $($(this).find("thead > tr > th[data-data]")).each(function () {
-            var column = {}, field = {};
-            var render = $(this).attr("data-render");
-            if (render)
-                if (render.startsWith("["))
-                    column.render = render;
-                else
-                    column.render = (mvc.JQuery.Datatables.column[render]);
-            if ($(this).attr("data-editable") !== false) {
-                field.label = $(this).attr("data-eidtor-label") || $(this).text();
-                field.name = $(this).attr("data-data");
-            }
-            columns.push(column);
-            fields.push(field);
-        });
+        var connect = {};
+        var $datatable = $(this);
+        var getRenderInfo = function () {
+            var columns = [];
+            $($datatable.find("thead > tr > th[data-data]")).each(function () {
+                var column = {};
+                var render = $(this).attr("data-render");
+                if (render)
+                    if (render.substring(0, 1) === "[")
+                        column.render = render;
+                    else
+                        column.render = (mvc.JQuery.Datatables.column[render]);
+                columns.push(column);
+            });
+            return columns;
+        };
         var root = {
             processing: true,
             serverSide: true,
             fnServerData: function (sSource, aoData, fnCallback) {
-                for (var DataTableRequest = {}, i = 0 ; i < aoData.length; i++) DataTableRequest[aoData[i].name] = aoData[i].value;
+                for (var dataTableRequest = {}, i = 0 ; i < aoData.length; i++) dataTableRequest[aoData[i].name] = aoData[i].value;
                 $.ajax({
                     url: $(this).attr("data-url"),
                     type: "POST",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: JSON.stringify(DataTableRequest),
-                    success: function(data, textStatus, jqXHR) {
+                    data: JSON.stringify(dataTableRequest),
+                    success: function (data, textStatus, jqXHR) {
+                        if (connect.tableTools)//Fix tabletool bug to disable buttons when no row is selected
+                            connect.tableTools.fnSelectNone();
                         (mvc.JQuery.Datatables.ajax[$(this).attr("data-succes") || "success"])(data, textStatus, jqXHR);
                         fnCallback(data, textStatus, jqXHR);
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
+                    error: function (jqXHR, textStatus, errorThrown) {
                         (mvc.JQuery.Datatables.ajax[$(this).attr("data-error") || "error"])(jqXHR, textStatus, errorThrown);
                     },
                 });
             },
-            columns: columns,
+            columns: getRenderInfo(),
             language: (mvc.JQuery.Datatables[$(this).attr("data-language") || "returnNull"])(),
             lengthMenu: (mvc.JQuery.Datatables[$(this).attr("data-lengthMenu") || "returnNull"])(),
-            tableTools: mvc.JQuery.Datatables.tableTools[$(this).attr("data-tableTools")](datatable)
+            tableTools: mvc.JQuery.Datatables.tableTools[$(this).attr("data-tableTools")](connect)
         }
-        datatable.obj = $(this).dataTable(root);
+        connect.datatable = $(this).dataTable(root);//give tabletool access to datatable to redraw after edit
     });
 });
 jQuery.fn.extend({
     ajaxForm: function (options) {
         var modal = this;
         var $form = null;
-        var initModelForm = function() {
+        var initModelForm = function () {
             $form.areYouSure({
                 change: function () {
                     var form = this;
@@ -132,18 +138,17 @@ jQuery.fn.extend({
                             if (data) {
                                 $(modal).find('.modal-close').off('click.close');
                                 $(modal).html(data);
-                                $(modal).find(".modal-close").on('click.close', function(e) {
+                                $(modal).find(".modal-close").on('click.close', function (e) {
                                     $(modal).closeModal();
                                 });
                             } else {
                                 $(modal).closeModal();
-                                if (typeof(options.dataChanged) === "function")
+                                if (typeof (options.dataChanged) === "function")
                                     options.dataChanged();
                             }
                         },
                         error: mvc.JQuery.Datatables.ajax.error
                     });
-
                     ev.preventDefault();
                 });
             }
