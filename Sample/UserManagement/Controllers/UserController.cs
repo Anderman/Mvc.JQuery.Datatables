@@ -37,15 +37,26 @@ namespace UserManagement.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public ViewResult Create()
+        public PartialViewResult Create()
         {
-            return View();
+            return PartialView();
         }
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Create(ApplicationUser model)
+        {
+            if (ModelState.IsValid)
+            {
+                return new EmptyResult();
+            }
+            return PartialView(model);
+        }
+
+
         [HttpGet]
         [AllowAnonymous]
         public PartialViewResult Edit(string Id)
         {
-
             var user = DbContext.Users.Include(u => u.Logins).Include(u => u.Claims).Include(u => u.Roles).FirstOrDefault(u => u.Id == Id);
             return PartialView(user);
         }
@@ -53,13 +64,10 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public IActionResult Edit(ApplicationUser model)
         {
-            //ModelState.AddModelError("oeps", "oeps");
-
             if (ModelState.IsValid)
             {
                 return new EmptyResult();
             }
-
             return PartialView(model);
         }
     }

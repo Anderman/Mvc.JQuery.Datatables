@@ -5,7 +5,7 @@
     ViewBag.Title = "Users";
 }
 <p>Use this area to provide additional information.</p>
-<table id="example1" class="table datatables bordered hoverable" cellspacing="0" width="100%"
+<table id="example1" class="table datatables bordered hoverable" cellspacing="0" width="100%" data-edit="/User/Edit/" data-create="/User/Create/" data-delete="/User/Delete/"
        asp-datatables-language='getLanguage'
        asp-datatables-lengthmenu='getLengthMenu'
        asp-datatables-url="/User/Index"
