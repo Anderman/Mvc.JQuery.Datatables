@@ -20,34 +20,6 @@ mvc.JQuery.Datatables.ajax.load = function (response, textStatus, xhr) {
         alert(xhr.status + " " + xhr.statusText);
 
 };
-mvc.JQuery.Datatables.tableTools.CUD = function (connect) {
-    return {
-        sRowSelect: "os",
-        aButtons: [
-            {
-                sExtends: "select_single",
-                sButtonClass: "waves-effect waves-light disabled modal-trigger",
-                sButtonText: "Edit",
-                fnInit: function () {
-                    connect.tableTools = this;
-                },
-                fnClick: function (nButton, oConfig) {
-                    if (this.fnGetSelected().length === 1) {
-                        var tableTools = this;
-                        var id = this.fnGetSelectedData()[0].Id;
-                        $("#myModal").ajaxForm({
-                            url: '/User/Edit/' + id,
-                            dataChanged: function () {
-                                tableTools.fnSelectNone();//Fix tabletool bug to disable buttons when no row is selected
-                                connect.datatable.fnDraw(false);//redraw the table to show the new data
-                            }
-                        });
-                    }
-                }
-            }
-        ]
-    }
-}
 
 // Bind every table with the class datatable
 // Read all information that can be used for data request from the table and th tags
