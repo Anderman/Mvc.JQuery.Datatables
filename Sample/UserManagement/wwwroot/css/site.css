@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 00px;
     padding-bottom: 20px;
 }
 
@@ -18,17 +18,67 @@ textarea {
 }
 
 /* Carousel */
-.carousel-caption {
-    z-index: 10 !important;
-}
-
-    .carousel-caption p {
-        font-size: 20px;
-        line-height: 1.4;
-    }
 
 @media (min-width: 768px) {
     .carousel-caption {
         z-index: 10 !important;
     }
+}
+
+table.dataTable thead th {
+    position: relative;
+}
+div.dataTables_filter {
+    float:right;
+    color: black;
+}
+div.dataTables_length label {
+    font-size:1rem;
+    color: black;
+}
+div.dataTables_length select {
+  width: auto;
+  height: auto;
+  display: inline-block;
+  padding-top: 0px;
+}
+table.dataTable thead th.sorting:after {
+    opacity: 0.2;
+    content: "\e164";
+}
+table.dataTable thead th.sorting_asc:after {
+    content: "\e5c5";
+}
+
+table.dataTable thead th.sorting_desc:after {
+    content: "\e5c7";
+}
+
+table.dataTable thead th.sorting:after, table.dataTable thead th.sorting_asc:after, table.dataTable thead th.sorting_desc:after {
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    display: block;
+    font-family: 'Material Icons';
+    opacity: 0.5;
+}
+.dataTable tbody tr.active td, .dataTable tbody tr.active th {
+  background-color: #eee;
+}
+
+body {
+    font-size: 100%;
+}
+
+div.DTTT {
+    margin-bottom: 0.5em;
+    float: left;
+}
+
+div.dataTables_wrapper {
+    clear: both;
+}
+
+div.dataTables_paginate {
+    float: right;
 }

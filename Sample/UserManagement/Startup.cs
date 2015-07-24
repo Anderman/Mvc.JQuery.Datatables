@@ -57,7 +57,16 @@ namespace UserManagement
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
             // Add Identity services to the services container.
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonLetterOrDigit = false;
+                options.SignIn.RequireConfirmedEmail = true;
+                options.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -109,6 +118,8 @@ namespace UserManagement
                 // sends the request to the following path or controller action.
                 app.UseErrorHandler("/Home/Error");
             }
+            app.EnsureMigrationsApplied();
+            app.EnsureSampleData().Wait();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();

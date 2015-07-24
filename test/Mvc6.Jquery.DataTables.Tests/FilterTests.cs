@@ -38,7 +38,7 @@ namespace Mvc.JQuery.Datatables.Tests
             var result = new DataTables().GetResponse(testData.Queryable, testData.DataTablesRequest);
 
             var data = result;
-            Assert.Equal(returnsResult, data.RecordsFiltered > 0);
+            Assert.Equal(returnsResult, data.recordsFiltered > 0);
         }
     }
     public class TestData

@@ -1,6 +1,6 @@
 ﻿//This script is the same for each jquery-datatable.
 //Define your own functions to extend the column rendering or custom error/succes message
-
+//
 var mvc = { "JQuery": { "Datatables": {} } };
 
 mvc.JQuery.Datatables.createMailToLink = function (data) {

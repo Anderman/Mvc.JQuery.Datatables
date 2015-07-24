@@ -1,0 +1,12 @@
+{
+  "name": "yo-bower-component",
+  "version": "0.0.1",
+  "main": "path/to/main.css",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

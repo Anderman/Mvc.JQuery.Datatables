@@ -5,9 +5,9 @@ namespace Mvc.JQuery.Datatables
 {
     public class DatatablesRepsonse
     {
-        public int RecordsTotal { get; set; }
-        public int RecordsFiltered { get; set; }
-        public int Draw { get; set; }
-        public object[] Data { get; set; }
+        public int recordsTotal { get; set; }
+        public int recordsFiltered { get; set; }
+        public int draw { get; set; }
+        public object[] data { get; set; }
     }
 }

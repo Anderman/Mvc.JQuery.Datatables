@@ -1,0 +1,22 @@
+{
+  "name": "yo-bower-component",
+  "version": "0.0.1",
+  "description": "yeoman bower component",
+  "keywords": [
+    "yeoman",
+    "bower",
+    "component"
+  ],
+  "scripts": [
+    "demo.js"
+  ],
+  "license": "MIT",
+  "gitHead": "a94bf4baa9955613937d4f4c083c9d95ad0564fb",
+  "readme": "jQuery Component\r\n================\r\n\r\nShim repository for jQuery.\r\n",
+  "readmeFilename": "README.md",
+  "_id": "yo-bower-component@0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/components/jquery.git"
+  }
+}

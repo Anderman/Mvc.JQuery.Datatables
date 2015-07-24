@@ -1,0 +1,35 @@
+﻿@model UserManagement.Models.ApplicationUser
+@using Mvc.JQuery.Datatables.TagHelpers
+@using UserManagement.Models
+@{
+    ViewBag.Title = "Users";
+}
+<p>Use this area to provide additional information.</p>
+<table id="example1" class="table datatables bordered hoverable" cellspacing="0" width="100%"
+       asp-datatables-language='getLanguage'
+       asp-datatables-lengthmenu='getLengthMenu'
+       asp-datatables-url="/User/Index"
+       data-dom='<"row"<"col s4"T><" col s4"r><" col right s4"f>>t<"row"<"col s4"l><"col s4"i><"col s4"p>>'
+       data-tabletools="CUD"
+       asp-datatables-savestate="true">
+    <thead>
+        <tr>
+            <th asp-datatables-data="Email" asp-datatables-render="createMailToLink"></th>
+            <th asp-datatables-data="EmailConfirmed"></th>
+            <th asp-datatables-data="LockoutEnd" asp-datatables-render="formatDate" data-mvc6-arg="yyyy-mm-dd hh:mm"></th>
+            <th asp-datatables-data="TwoFactorEnabled" asp-datatables-orderable="false"></th>
+            <th asp-datatables-data="UserName" asp-datatables-searchable="false"> </th>
+            <th asp-datatables-data="Logins" asp-datatables-searchable="false" asp-datatables-render="[, ].LoginProvider"> </th>
+
+        </tr>
+    </thead>
+
+
+</table>
+<div class="modal modal-form modal-fixed-footer" id="myModal">
+</div>
+
+<p>Content</p>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

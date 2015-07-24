@@ -19,10 +19,10 @@ namespace Mvc.JQuery.Datatables
 
             return new DatatablesRepsonse
             {
-                RecordsTotal = totalRecords,
-                RecordsFiltered = totalDisplayRecords,
-                Draw = param.Draw,
-                Data = data.Cast<object>().ToArray(),
+                recordsTotal = totalRecords,
+                recordsFiltered = totalDisplayRecords,
+                draw = param.Draw,
+                data = data.Cast<object>().ToArray(),
             };
         }
 
