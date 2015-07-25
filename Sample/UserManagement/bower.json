@@ -8,6 +8,7 @@
         "jquery": "2.1.4",
         "jquery-validation": "1.11.1",
         "jquery-validation-unobtrusive": "3.2.2",
-        "jquery.are-you-sure": "1.9.0"
+        "jquery.are-you-sure": "1.9.0",
+        "jquery-confirm": "2.5.0"
     }
 }
