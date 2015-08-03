@@ -14,25 +14,55 @@ mvc.JQuery.Datatables.returnNull = function (data) { return null; }
 mvc.JQuery.Datatables.getLengthMenu = function () { return [[5, 50, 100, -1], [5, 50, 100, 'All']] };
 mvc.JQuery.Datatables.getLanguage = function () { return {} };
 mvc.JQuery.Datatables.ajax.success = function (data, textStatus, jqXHR) { };
-mvc.JQuery.Datatables.ajax.error = function (jqXHR, textStatus, errorThrown) { alert(errorThrown) };
+mvc.JQuery.Datatables.ajax.error = function(jqXHR, textStatus, errorThrown) {
+    var newWindow = window.open();
+    newWindow.document.write(jqXHR.responseText);
+};
 mvc.JQuery.Datatables.ajax.load = function (response, textStatus, xhr) {
     if (textStatus === 'error')
         alert(xhr.status + ' ' + xhr.statusText);
-
 };
 
 // Bind every table with the class datatable
-// Read all information that can be used for data request from the table and th tags
 $(document).ready(function () {
     $('table.datatables').each(function () {
         $(this).MvcDatatable({ leaveMessage: 'De wijzigingen zijn niet opgeslagen! toch door gaan?' });
-        //connect.datatable = give tabletool access to datatable to redraw the table after save form
     });
+
+
+    //$(".form_datetime").datetimepicker({
+    //    format: "dd-mm-yyyy hh:ii",
+    //    autoclose: true,
+    //    todayBtn: true
+    //});
+
+    //$(function () {
+    //$('#datetimepicker1').datetimepicker({ autoclose: true });
+    //$('#datetimepicker2').datetimepicker({ autoclose: true });
+    //$('.form_datetime3').datetimepicker({ autoclose: true });
+
+    //$(document).on('hidden.bs.modal', function (e) {
+    //    //$modal.off('click.confirm');
+    //    //$modal.off('hide.bs.modal');
+    //    //$modal.off('hidden.bs.modal');
+    //    $('body').addClass('modal-open');
+    //},'.modal');
+    //$(document).on(
+    //    'hidden.bs.modal', function () {
+    //        if ($('.modal:visible').length > 0) {setTimeout(function () {$(document.body).addClass('modal-open');}, 0);}
+    //    }
+    //, '.modal');
+    //$(function () {
+    //    $('#datetimepicker1').datetimepicker();
+    //});
+
 });
+
 jQuery.fn.extend({
-    //todo muti-delete
+    //todo muti-delete 
+    //todo CRUD without tabletools
     MvcDatatable: function (options) {
-        var connect = {};
+        var connect = {};//connect give tabletool access to datatable to redraw the table after save form and datatable access to tabletools to fix disable button bug
         var $datatable = $(this);
         var createLink = $datatable.attr('data-create');
         var editLink = $datatable.attr('data-edit');
@@ -72,7 +102,7 @@ jQuery.fn.extend({
         };
         var editButton = {
             sExtends: 'select_single',
-            sButtonClass: 'waves-effect waves-light disabled modal-trigger',
+            sButtonClass: 'btn btn-primary btn-raised disabled',
             sButtonText: 'Edit',
             fnInit: function () {
                 connect.tableTools = this;
@@ -80,7 +110,7 @@ jQuery.fn.extend({
             fnClick: function (nButton, oConfig) {
                 if (this.fnGetSelected().length === 1) {
                     var id = this.fnGetSelectedData()[0].Id;
-                    $('#myModal').ajaxForm({
+                    $('#ajaxForm').ajaxForm({
                         url: editLink + id,
                         leaveMessage: options.leaveMessage,
                         dataChanged: function () {
@@ -93,13 +123,13 @@ jQuery.fn.extend({
         }
         var createButton = {
             sExtends: 'text',
-            sButtonClass: 'waves-effect waves-light modal-trigger',
+            sButtonClass: 'btn btn-primary btn-raised modal-trigger',
             sButtonText: 'Create',
             fnInit: function () {
                 connect.tableTools = this;
             },
             fnClick: function (nButton, oConfig) {
-                $('#myModal').ajaxForm({
+                $('#ajaxForm').ajaxForm({
                     url: createLink,
                     leaveMessage: options.leaveMessage,
                     dataChanged: function () {
@@ -111,7 +141,7 @@ jQuery.fn.extend({
         }
         var deleteButton = {
             sExtends: 'select_single',
-            sButtonClass: 'waves-effect waves-light disabled modal-trigger',
+            sButtonClass: 'btn btn-primary btn-raised disabled',
             sButtonText: 'Delete',
             fnInit: function () {
                 connect.tableTools = this;
@@ -119,7 +149,7 @@ jQuery.fn.extend({
             fnClick: function (nButton, oConfig) {
                 if (this.fnGetSelected().length >= 1) {
                     var id = this.fnGetSelectedData()[0].Id;
-                    $('#myModal').ajaxForm({
+                    $('#ajaxForm').ajaxForm({
                         url: deleteLink + id,
                         leaveMessage: options.leaveMessage,
                         dataChanged: function () {
@@ -154,67 +184,151 @@ jQuery.fn.extend({
     }
 });
 
-jQuery.fn.extend({//todo ask ays question on close button, implement esc key
+///Confirm dialog
+///input a html diaglog with buttons with the class .btn
+///output the buttonname or 'cancel' is esc is pressed
+jQuery.fn.extend({
+    confirm: function (callback) {
+        var $modal = $(this);
+        var button = 'cancel';
+
+        $modal.off('click.confirm');
+        $modal.off('hide.bs.modal');
+        $modal.off('hidden.bs.modal');
+        $modal.on('click.confirm', '.btn', function (e) {
+            button = this.name;
+            $modal.modal('hide');
+        });
+        $modal.on('hide.bs.modal', function (e) {
+            if (typeof (callback) === 'function') {
+                callback(button);
+            }
+        });
+        $modal.on('hidden.bs.modal', function (e) {
+            $('.modal:visible').length > 0
+            && $('body').addClass('modal-open-backup')
+            && setTimeout(function () { $('body').addClass('modal-open').removeClass('modal-open-backup'); }, 0);
+            //$modal.off('hidden.bs.modal');
+            //$('body').addClass('modal-open');
+        });
+        $modal.modal('show');
+        $modal.addClass("in");
+        $modal.css({ display: "block" });
+    }
+});
+jQuery.fn.extend({
     ajaxForm: function (options) {
         var modal = this;
         var $form = null;
-        var bindCloseClass = function (data) {
-            $(modal).find('.modal-close').off('click.close');
-            if (data)
-                $(modal).html(data); //load the new form
-            $(modal).find('.modal-close').on('click.close', function (e) {
-                if ($form.hasClass('dirty')) {
-                    if (!confirm(options.cancelMessage || options.leaveMessage)) return;
-                }
-                $form.trigger('reinitialize.areYouSure');
-                $(modal).closeModal();
+        var closeForm =function()
+        {
+            if ($form.hasClass('dirty')) {
+                $('#confirm.modal').confirm(function (button) {
+                    if (button === 'yes') {
+                        $form.submit();
+                    }
+                    if (button === 'no') {
+                        $form.trigger('reinitialize.areYouSure'); //set form not dirty 
+                        $(modal).modal('hide');
+                    }
+                });
+            } else {
+                $form.trigger('reinitialize.areYouSure');// allow navigation
+                $(modal).modal('hide');
+            }
+        }
+        var bindCloseClass = function () {
+            $form.on('click.close', '.modal-close', function (e) {
+                closeForm();
             });
         }
-        var initModelForm = function () {
+        var bindBackdrop = function () {
+            $(modal).on('click.ajaxform', function (e) {
+                if (e.target !== e.currentTarget)
+                    return;
+                closeForm();
+            });
+        }
+        var bindAreyouSure = function () {
             $form.areYouSure({
                 change: function () {
-                    var form = this;
                     // Enable save button only if the form is dirty. i.e. something to save.
-                    if ($(form).hasClass('dirty')) {
-                        $(form).find('[type="submit"]').removeClass('disabled').removeAttr('disabled');;
+                    if ($form.hasClass('dirty')) {
+                        $form.find('[type="submit"]').removeClass('disabled').removeAttr('disabled');
                     } else {
-                        $(form).find('[type="submit"]').addClass('disabled').attr('disabled', 'disabled');;
+                        $form.find('[type="submit"]').addClass('disabled').attr('disabled', 'disabled');;
                     }
                 },
                 message: options.leaveMessage
             });
+        }
+        var bindSubmitForm = function () {
+            $form.submit(function (ev) {
+                if (!$form.valid())
+                    return;
+                $.ajax({
+                    type: $form.attr('method'),
+                    url: $form.attr('action'),
+                    data: $form.serialize(),
+                    success: function (data) {
+                        if (data) {
+                            initModelForm(data);
+                        } else {
+                            $(modal).modal('hide');
+                            if (typeof (options.dataChanged) === 'function')
+                                options.dataChanged();
+                        }
+                    },
+                    error: mvc.JQuery.Datatables.ajax.error
+                });
+                ev.preventDefault();
+            });
+        };
+        var bindEscape = function () {
+            //debugger;
+            $('body').on('keyup.dismiss.bs.modal', function (e) {
+                if (e.which === 27) {
+                    if (!$form.hasClass('dirty'))
+                        $(modal).modal('hide');
+                    else
+                        closeForm();
+                }
+            });
+        }
+        var initModelForm = function (data) {
+            if (data) {
+                $(modal).html(data); //load the new form
+            }
+            $form = $(modal).find('form');
+            $form.off('submit');
+            $form.off('click.close', '.modal-close');
+            $(modal).off('click.ajaxform');
+            $(modal).off('shown.bs.modal.my');
+            $('body').off('keyup.dismiss.bs.modal');
+            bindSubmitForm();
+            bindAreyouSure();
             bindCloseClass();
+            bindBackdrop();
+            bindEscape();
+            $(modal).on('shown.bs.modal.my', function () {
+                $form.find('input:enabled').first()[0].focus();
+            });
+            $.validator.unobtrusive.parse('form');
+
         };
         $(modal).load(options.url, function (response, textStatus, xhr) {
             if (textStatus === 'error')
                 alert(xhr.status + ' ' + xhr.statusText);
             else {
-                $.validator.unobtrusive.parse(modal);
-                $(modal).openModal({
-                    dismissible: false
+                $(modal).modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
                 });
-                $form = $(modal).find('form');
                 initModelForm();
 
-                $form.submit(function (ev) {
-                    $.ajax({
-                        type: $form.attr('method'),
-                        url: $form.attr('action'),
-                        data: $form.serialize(),
-                        success: function (data) {
-                            if (data) {
-                                bindCloseClass(data);
-                            } else {
-                                $(modal).closeModal();
-                                if (typeof (options.dataChanged) === 'function')
-                                    options.dataChanged();
-                            }
-                        },
-                        error: mvc.JQuery.Datatables.ajax.error
-                    });
-                    ev.preventDefault();
-                });
             }
         });
     }
 });
+

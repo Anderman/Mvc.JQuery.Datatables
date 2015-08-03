@@ -132,7 +132,7 @@ namespace UserManagement.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult LogOff()
         {
-            _signInManager.SignOut();
+            _signInManager.SignOutAsync().Wait();
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -445,7 +445,7 @@ namespace UserManagement.Controllers
             if (!_databaseChecked)
             {
                 _databaseChecked = true;
-                context.Database.AsRelational().ApplyMigrations();
+                context.Database.ApplyMigrations();
             }
         }
 

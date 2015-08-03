@@ -4,12 +4,12 @@
 @{
     ViewBag.Title = "Users";
 }
-<p>Use this area to provide additional information.</p>
-<table id="example1" class="table datatables bordered hoverable" cellspacing="0" width="100%" data-edit="/User/Edit/" data-create="/User/Create/" data-delete="/User/Delete/"
+
+<table id="Users" class="table datatables table-striped table-bordered" cellspacing="0" width="100%" role="grid" style="width: 100%;" data-edit="/User/Edit/" data-create="/User/Create/" data-delete="/User/Delete/"
        asp-datatables-language='getLanguage'
        asp-datatables-lengthmenu='getLengthMenu'
        asp-datatables-url="/User/Index"
-       data-dom='<"row"<"col s4"T><" col s4"r><" col right s4"f>>t<"row"<"col s4"l><"col s4"i><"col s4"p>>'
+       data-dom='<"row"<"col-sm-6"T>r<"col-sm-6>"f>><"row"t><"row"<"col-sm-4"l><"col-sm-4"i><"col-sm-4"p>>'
        data-tabletools="CUD"
        asp-datatables-savestate="true">
     <thead>
@@ -20,16 +20,28 @@
             <th asp-datatables-data="TwoFactorEnabled" asp-datatables-orderable="false"></th>
             <th asp-datatables-data="UserName" asp-datatables-searchable="false"> </th>
             <th asp-datatables-data="Logins" asp-datatables-searchable="false" asp-datatables-render="[, ].LoginProvider"> </th>
-
         </tr>
     </thead>
-
-
 </table>
-<div class="modal modal-form modal-fixed-footer" id="myModal">
+
+<div id="ajaxForm" class="modal fade" role="dialog"></div>
+
+<div id="confirm" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+                Wilt u de wijzigingen opslaan!!
+            </div>
+            <div class="modal-footer">
+                <button type="button" name="no" class="btn btn-primary">Nee</button>
+                <button type="submit" name="yes" class="btn btn-primary">Ja</button>
+            </div>
+        </div>
+    </div>
 </div>
 
-<p>Content</p>
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
+<script type="text/javascript"></script>

@@ -37,7 +37,7 @@ namespace UserManagement
 
             if (env.IsDevelopment())
             {
-                // This reads the configuration keys from the secret store.
+                // This reads the configuration keys from the secret store.  file://%APPDATA%\microsoft\UserSecrets\<applicationId>\secrets.json 
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
@@ -109,7 +109,7 @@ namespace UserManagement
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
                 app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
             }
             else

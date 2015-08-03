@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Linq.Dynamic;
+using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Mvc.JQuery.Datatables;
@@ -28,12 +29,23 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public JsonResult Index([FromBody]DataTablesRequest dTRequest)
         {
-            return new DataTables().GetJSonResult(
-                DbContext.Users
-                //.Include(u => u.Logins)//.Select(l=>l.LoginProvider))
-                //.Include(u => u.Claims)
-                //.Include(u => u.Roles)
-                , dTRequest);
+            //var a = DbContext.Users.Include(u => u.Logins);
+            //var c = a.Where(u => u.Email == "a").ToArray();
+            var d = DbContext.Users.Include(u => u.Logins).Where("Email.Contains(@0)", "a").ToArray();
+            var e = DbContext.Users.Include(u => u.Logins).Where("Email.Contains(@0)", "a").OrderBy("Email").ToArray();
+            var ij = DbContext.Users.Include(u => u.Logins).Where(u => u.Email.Contains("a")).OrderBy(u => u.Email).Skip(0).ToArray();
+            var f = DbContext.Users.Include(u => u.Logins).Where("Email.Contains(@0)", "a").OrderBy("Email").Skip(0).ToArray();
+            var g = DbContext.Users.Include(u => u.Logins).Where("Email.Contains(@0)", "a").OrderBy("Email").Skip(0).Take(5).ToArray();
+
+            var h = new JsonResult(d.OrderBy("Email").Skip(0).Take(5).ToArray());
+            var i = new DataTables().GetJSonResult(DbContext.Users.Include(u => u.Logins), dTRequest);
+            return null;
+            //return new DataTables().GetJSonResult(
+            //    //DbContext.Users
+            //    //.Include(u => u.Logins)//.Select(l=>l.LoginProvider))
+            //    //                       //.Include(u => u.Claims)
+            //    //                       //.Include(u => u.Roles)
+            //    , dTRequest);
         }
         [HttpGet]
         [AllowAnonymous]

@@ -8,7 +8,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Relational.Migrations;
+using Microsoft.Data.Entity.Migrations;
+using Microsoft.Data.Entity.Relational;
 using Microsoft.Framework.OptionsModel;
 
 namespace UserManagement.Models
@@ -19,10 +20,11 @@ namespace UserManagement.Models
         public override bool TwoFactorEnabled { get; set; } = false;
         public override bool EmailConfirmed { get; set; } = true;
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public override DateTimeOffset? LockoutEnd { get; set; }
+        public override DateTimeOffset? LockoutEnd { get { return base.LockoutEnd; } set { base.LockoutEnd = value; } }
         [Required]
+        [ScaffoldColumn(false)]
         [Display(Description = "Email adress is used for login")]
-        public override string Email { get; set; }
+        public override string Email { get { return base.Email; } set { base.Email = value; } }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -36,7 +38,7 @@ namespace UserManagement.Models
         }
         public bool AllMigrationsApplied()
         {
-            return !((IAccessor<IMigrator>)Database.AsRelational()).Service.GetUnappliedMigrations().Any();
+            return !((IMigrator)((IAccessor<IServiceProvider>)Database).Service.GetService(typeof(IMigrator))).GetUnappliedMigrations().Any();
         }
     }
     public enum Roles
