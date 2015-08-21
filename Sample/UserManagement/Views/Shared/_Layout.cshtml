@@ -12,7 +12,7 @@
         <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
         <link href="~/lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
+
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/css/bootstrapMD-datetimepicker.css" rel="stylesheet">
         @*<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css" asp-file-version="true" />*@
@@ -25,19 +25,23 @@
     </environment>
 </head>
 <body>
-    <div class="navbar-fixed">
-        <nav class="orange">
-            <div class="navbar-wrapper">
-                <a asp-controller="Home" asp-action="Index" class="brand-logo">UserManagement</a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
+    <div class="navbar navbar-default navbar-fixed">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">Usermanagement</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="User" asp-action="Index">Users</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+            </ul>
             @await Html.PartialAsync("_LoginPartial")
-        </nav>
+        </div>
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -50,20 +54,20 @@
     <environment names="Development">
         <script src="http://datatables.net/release-datatables/media/js/jquery.js"></script>
         <script src="~/js/site.js" asp-file-version="false"></script>
-        <script src="~/fallback/js/bootstrap.js" ></script>
+        <script src="~/fallback/js/bootstrap.js"></script>
         <script src="~/fallback/js/jquery.dataTables.js"></script>
         <script src="~/fallback/js/dataTables.tableTools.js"></script>
         <script src="~/fallback/js/dataTables.bootstrap.js"></script>
         <script src="~/fallback/js/moment-with-locales.js"></script>
 
         @*<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js"  asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
-        <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>*@
+            <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
+            <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
+            <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>*@
         <script src="~/lib/bootstrap-material-design/dist/js/ripples.min.js" asp-copy-src-to-fallback="development"></script>
         <script src="~/lib/bootstrap-material-design/dist/js/material.min.js" asp-copy-src-to-fallback="development"></script>
-@*        <script src="http://www.malot.fr/bootstrap-datetimepicker/js/bootstrap-dropdown.js?" asp-copy-src-to-fallback="development"></script>*@
+        @*        <script src="http://www.malot.fr/bootstrap-datetimepicker/js/bootstrap-dropdown.js?" asp-copy-src-to-fallback="development"></script>*@
         <script src="~/js/bootstrapMD-datetimepicker.js" asp-copy-src-to-fallback="development"></script>
 
         <script>

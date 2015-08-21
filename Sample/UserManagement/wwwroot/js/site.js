@@ -318,7 +318,7 @@ jQuery.fn.extend({
         };
         $(modal).load(options.url, function (response, textStatus, xhr) {
             if (textStatus === 'error')
-                alert(xhr.status + ' ' + xhr.statusText);
+                mvc.JQuery.Datatables.ajax['error'](xhr, textStatus)
             else {
                 $(modal).modal({
                     backdrop: 'static',

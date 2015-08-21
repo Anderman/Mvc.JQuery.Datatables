@@ -11,7 +11,6 @@ using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Microsoft.Data.Entity.Relational;
 using Microsoft.Framework.OptionsModel;
-
 namespace UserManagement.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
@@ -26,8 +25,12 @@ namespace UserManagement.Models
         [Display(Description = "Email adress is used for login")]
         public override string Email { get { return base.Email; } set { base.Email = value; } }
     }
+    public class ApplicationUserRoles : IdentityUserRole
+    {
+        public virtual ApplicationUser Role { get; set; }
+    }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         protected override void OnModelCreating(ModelBuilder builder)
         {

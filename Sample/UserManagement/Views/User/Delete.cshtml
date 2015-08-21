@@ -1,0 +1,28 @@
+﻿@model ApplicationUser
+@using Mvc.JQuery.Datatables.TagHelpers
+@using UserManagement.Models
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form asp-controller="User" asp-action="Delete" method="post" class="form-horizontal" role="form">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <button type="button" class="close modal-close" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">@ViewBag.Title</h4>
+                    
+                </div>
+                <div asp-validation-summary="ValidationSummary.All" class="text-danger"></div>
+                <input class="form-control" asp-for="UserName" asp-material-design="true" disabled/>
+                <input class="form-control" asp-for="Email" asp-material-design="true" disabled/>
+                <input class="form-control" asp-for="PhoneNumber" asp-material-design="true" disabled/>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary waves-effect waves-light modal-trigger">Delete</button>
+                    <button type="button" class="btn btn-primary modal-close waves-effect waves-light">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

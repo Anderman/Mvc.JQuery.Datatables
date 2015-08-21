@@ -1,5 +1,5 @@
 {
-  "locked": false,
+  "locked": true,
   "version": 1,
   "targets": {
     "DNX,Version=v4.5.1": {
@@ -1225,20 +1225,6 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.Framework.Caching.Memory.dll": {}
-        }
-      },
-      "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta6": {
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll": {}
         }
       },
       "Microsoft.Framework.Configuration/1.0.0-beta6": {
@@ -2884,7 +2870,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
-      "sha512": "WNkXBsd3S0c8NKv8/6Yb5NJf7DI1C2lJbPm162BLF9v2JQfFcKtrH4AOw9evNbJa19UMu6KZx0pvsVFBXahNog==",
+      "sha512": "E7VdmGw6xO3VHWapC+pNLZmo6yncS53UY3bmb5WZm9wliJBB1A6brgzKA4fcqiLrmJFx71r0M2zEbRDphRLUNg==",
       "files": [
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -2899,7 +2885,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Common/1.0.0": {
-      "sha512": "F6CWioHEnsl7OPPAHqo8Pr7EpD1M2ROmK2pRZU0fk9MIFUDN/THh41wOw4FZgxpAIYBWMUbVR9XZPY1mpj+1Pw==",
+      "sha512": "MhxsY8N9veim57uXqcRCJb7X9xZoWhMDU4/EyIqNkS7qfRsLxrzELSpjp6NjFkISZElvwIV2Ehi3UxyJui/gPw==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.dll",
         "lib/net45/Microsoft.CodeAnalysis.xml",
@@ -2912,7 +2898,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp/1.0.0": {
-      "sha512": "kl1gAomPlV6MLoj2zUiEneL64HlE8BxETlstfrq88D/exZYW091kcFrz0u1sLGT2ovQvS7+N+mt1JVGl6vXdHw==",
+      "sha512": "KZ70r7EF+Dn8qp2p1CiBJGVoIG6el7Q9cLhnXuq+3oLcnMvUk2XzimB36AgO/Qg/liqRzf992WmFWhwqZSaIEg==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.CSharp.dll",
         "lib/net45/Microsoft.CodeAnalysis.CSharp.xml",
@@ -2954,23 +2940,6 @@
         "Microsoft.Framework.Caching.Memory.1.0.0-beta6.nupkg.sha512",
         "Microsoft.Framework.Caching.Memory.nuspec",
         "repo.json"
-      ]
-    },
-    "Microsoft.Framework.CommandLineUtils.Sources/1.0.0-beta6": {
-      "sha512": "SoI/xicmO2Nutc3y1Wxg2GIR18M5IDqYjUR5plULxb8XCMDeJ8oYKAicpEeHuc/GNUHiICmac0U4li50DTVqBA==",
-      "files": [
-        "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.dll",
-        "lib/dnx451/Microsoft.Framework.CommandLineUtils.Sources.xml",
-        "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.dll",
-        "lib/dnxcore50/Microsoft.Framework.CommandLineUtils.Sources.xml",
-        "Microsoft.Framework.CommandLineUtils.Sources.1.0.0-beta6.nupkg",
-        "Microsoft.Framework.CommandLineUtils.Sources.1.0.0-beta6.nupkg.sha512",
-        "Microsoft.Framework.CommandLineUtils.Sources.nuspec",
-        "shared/AnsiConsole.cs",
-        "shared/CommandArgument.cs",
-        "shared/CommandLineApplication.cs",
-        "shared/CommandOption.cs",
-        "shared/CommandOptionType.cs"
       ]
     },
     "Microsoft.Framework.Configuration/1.0.0-beta6": {
@@ -3537,7 +3506,7 @@
       ]
     },
     "System.Collections/4.0.0-beta-23109": {
-      "sha512": "mCFx4ErGYeihBJN0fXtznnwUHWiWHLKpb8UNrAChnL2sTtAVudjpVX6u20+d663nBT+zltE4ARbXq5ftgIyFyA==",
+      "sha512": "6G9ApANdcgyJGmh3t5Dk4djNN1kFlpW63Nc3O/yPs6I3VThO+LYG2Z6xSsQSl8TLAx3EP5WoqR2IG8Q7OWACHQ==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3589,7 +3558,7 @@
       ]
     },
     "System.Diagnostics.Debug/4.0.0-beta-23109": {
-      "sha512": "IQIshlTSvZP/0vxVTmMYr/QTd2xq55pC/5zBSwetlUpn2otAhahcvysPYRLj4TsrOfwN4ZBVJH52di0PSAfhJA==",
+      "sha512": "Oom6i2g6ivDNV1oTezetou/l64n3zoW9stVAYhjv+rNoh+kpKg7rurnJBmD/XNMz1upk1AQMtelzukMh7S4i9Q==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3628,7 +3597,7 @@
       ]
     },
     "System.Globalization/4.0.0-beta-23109": {
-      "sha512": "8zLrnA1TczXIqW+hszU2gbhoelI1+gKVlsJ7N1Z1WOQLsPl3XQTpXkKKJ4BWSm8R/gqNjX9SAbGJSyVsBTmtvg==",
+      "sha512": "ZNSeAYkY8ldNPmxSyv2aP7nSjbQHZtfboNXWE8zrQSvIKCs61kU6Ittae7OPxnsge2c9wGB6MJZPqldayTMVcg==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3753,7 +3722,7 @@
       ]
     },
     "System.Runtime/4.0.0-beta-23109": {
-      "sha512": "tDjmKxgh7gihPLw5RbrjbUeb5PwzYQMSUgPo2c0Q0FTlsWx4kY5a1j7WtIrTVFBBsNfhoBAwjoZVhVR2+5I4yg==",
+      "sha512": "n8DjssywHmehbn6YlOJZM9iutCja9i4Y0l6esJKBkzGHqfQ/w31FH4c21HwIGTsnYLLd8SxntAipo7rKGZswjQ==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3792,7 +3761,7 @@
       ]
     },
     "System.Runtime.Extensions/4.0.0-beta-23109": {
-      "sha512": "jDLh5QNrVB262Ps6o6Vu7kyAEJZpQ7QlpoDLXpMpDeByv4be2GqRRu1rlRQ9VUb6Mz9gFuxe0uNKB04quC6IeA==",
+      "sha512": "hED9RRL6occBOvpA15YKapuNwX/y8tSuvGJsA1uGQuJNQXMWX3HTueoiwQaysYOptshv0Dgm+HGpK6QfrWBqkw==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",
@@ -3831,7 +3800,7 @@
       ]
     },
     "System.Threading/4.0.0-beta-23109": {
-      "sha512": "GVp7bnSl+l2iXim+O1XZpfUOTi/0OdZ0LV2JqAqfZUJ5ztHccXkWgWyIB5+WyNgFAxgw/DNE8LCN28U9kxa9qw==",
+      "sha512": "jZVvGmK0trm7VD2nPbq1NjWMplsAgLlsDwXPPgjD/Y9EfAZ68N4faUhMh2uj9xIhnukAZdzTLmrxXGRQGFae9g==",
       "files": [
         "lib/net45/_._",
         "lib/win8/_._",

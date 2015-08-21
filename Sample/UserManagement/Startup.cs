@@ -1,4 +1,5 @@
-﻿using System;
+﻿using UserManagement.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -100,8 +101,12 @@ namespace UserManagement
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+            //loggerFactory.AddConsole();
+            // Add the console logger.
+            loggerFactory.AddConsole(minLevel: LogLevel.Warning);
+
+            //loggerFactory.AddProvider(new SqlLoggerProvider());
 
             // Configure the HTTP request pipeline.
 

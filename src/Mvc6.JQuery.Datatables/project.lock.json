@@ -1685,7 +1685,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
-      "sha512": "WNkXBsd3S0c8NKv8/6Yb5NJf7DI1C2lJbPm162BLF9v2JQfFcKtrH4AOw9evNbJa19UMu6KZx0pvsVFBXahNog==",
+      "sha512": "E7VdmGw6xO3VHWapC+pNLZmo6yncS53UY3bmb5WZm9wliJBB1A6brgzKA4fcqiLrmJFx71r0M2zEbRDphRLUNg==",
       "files": [
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.Analyzers.dll",
         "analyzers/dotnet/cs/Microsoft.CodeAnalysis.CSharp.Analyzers.dll",
@@ -1700,7 +1700,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Common/1.0.0": {
-      "sha512": "F6CWioHEnsl7OPPAHqo8Pr7EpD1M2ROmK2pRZU0fk9MIFUDN/THh41wOw4FZgxpAIYBWMUbVR9XZPY1mpj+1Pw==",
+      "sha512": "MhxsY8N9veim57uXqcRCJb7X9xZoWhMDU4/EyIqNkS7qfRsLxrzELSpjp6NjFkISZElvwIV2Ehi3UxyJui/gPw==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.dll",
         "lib/net45/Microsoft.CodeAnalysis.xml",
@@ -1713,7 +1713,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.CSharp/1.0.0": {
-      "sha512": "kl1gAomPlV6MLoj2zUiEneL64HlE8BxETlstfrq88D/exZYW091kcFrz0u1sLGT2ovQvS7+N+mt1JVGl6vXdHw==",
+      "sha512": "KZ70r7EF+Dn8qp2p1CiBJGVoIG6el7Q9cLhnXuq+3oLcnMvUk2XzimB36AgO/Qg/liqRzf992WmFWhwqZSaIEg==",
       "files": [
         "lib/net45/Microsoft.CodeAnalysis.CSharp.dll",
         "lib/net45/Microsoft.CodeAnalysis.CSharp.xml",
