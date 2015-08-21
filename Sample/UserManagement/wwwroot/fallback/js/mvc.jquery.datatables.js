@@ -1,4 +1,4 @@
-﻿jQuery.fn.extend({
+jQuery.fn.extend({
     //todo muti-delete 
     //todo CRUD without tabletools
     MvcDatatable: function (options) {

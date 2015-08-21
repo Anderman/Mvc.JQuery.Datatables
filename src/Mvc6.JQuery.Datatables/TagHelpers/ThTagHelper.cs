@@ -11,9 +11,6 @@ namespace Mvc.JQuery.Datatables.TagHelpers
     [TargetElement("th", Attributes = "asp-datatables-searchable")]
     public class ThTagHelper : TagHelper
     {
-        /// <summary>
-        /// test sum
-        /// </summary>
         [HtmlAttributeName("asp-datatables-data")]
         public ModelExpression For { get; set; }
         [HtmlAttributeName("asp-datatables-render")]
