@@ -54,20 +54,15 @@
     <environment names="Development">
         <script src="http://datatables.net/release-datatables/media/js/jquery.js"></script>
         <script src="~/js/site.js" asp-file-version="false"></script>
-        <script src="~/fallback/js/bootstrap.js"></script>
-        <script src="~/fallback/js/jquery.dataTables.js"></script>
-        <script src="~/fallback/js/dataTables.tableTools.js"></script>
-        <script src="~/fallback/js/dataTables.bootstrap.js"></script>
-        <script src="~/fallback/js/moment-with-locales.js"></script>
 
-        @*<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js"  asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
-            <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
-            <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
-            <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>*@
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
+        <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
+        <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
+        <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>
         <script src="~/lib/bootstrap-material-design/dist/js/ripples.min.js" asp-copy-src-to-fallback="development"></script>
         <script src="~/lib/bootstrap-material-design/dist/js/material.min.js" asp-copy-src-to-fallback="development"></script>
-        @*        <script src="http://www.malot.fr/bootstrap-datetimepicker/js/bootstrap-dropdown.js?" asp-copy-src-to-fallback="development"></script>*@
+        <script src="~/js/MVCDatatables.js" asp-copy-src-to-fallback="development"></script>
         <script src="~/js/bootstrapMD-datetimepicker.js" asp-copy-src-to-fallback="development"></script>
 
         <script>
