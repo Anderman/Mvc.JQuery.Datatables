@@ -1,4 +1,4 @@
-﻿{
+{
     "webroot": "wwwroot",
     "userSecretsId": "aspnet5-GGZDBC5-d96c66a6-1a4e-4a9a-b8d4-11c2f88ff638",
     "version": "1.0.0-*",
@@ -27,7 +27,8 @@
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta6",
         "Mvc6.JQuery.Datatables": "1.0.0-beta6",
         "TagHelpers": "",
-        "Microsoft.Framework.SecretManager": "1.0.0-beta6"
+        "Microsoft.Framework.SecretManager": "1.0.0-beta6",
+        "Microsoft.ApplicationInsights.AspNet": "1.0.0-beta6"
     },
     "commands": {
         "web": "Microsoft.AspNet.Hosting --config hosting.ini",

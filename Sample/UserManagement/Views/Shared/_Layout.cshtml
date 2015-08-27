@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration TelemetryConfiguration
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,6 +23,7 @@
               asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
         <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
     </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed">

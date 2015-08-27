@@ -43,6 +43,7 @@ namespace UserManagement
                 builder.AddUserSecrets();
             }
             builder.AddEnvironmentVariables();
+            builder.AddApplicationInsightsSettings(developerMode: true);
             Configuration = builder.Build();
         }
 
@@ -96,6 +97,7 @@ namespace UserManagement
             // Register application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         // Configure is called after ConfigureServices is called.
@@ -125,6 +127,7 @@ namespace UserManagement
             }
             app.EnsureMigrationsApplied();
             app.EnsureSampleData().Wait();
+            app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();

@@ -135,6 +135,37 @@
           "lib/net45/System.Interactive.Async.dll": {}
         }
       },
+      "Microsoft.ApplicationInsights/1.1.1-beta": {
+        "compile": {
+          "lib/net45/Microsoft.ApplicationInsights.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.ApplicationInsights.dll": {}
+        }
+      },
+      "Microsoft.ApplicationInsights.AspNet/1.0.0-beta6": {
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "1.1.1-beta",
+          "Microsoft.AspNet.Hosting.Abstractions": "1.0.0-beta6",
+          "Microsoft.AspNet.Http.Abstractions": "1.0.0-beta6",
+          "Microsoft.AspNet.Http.Features": "1.0.0-beta6",
+          "Microsoft.AspNet.Mvc": "6.0.0-beta6",
+          "Microsoft.Framework.Configuration": "1.0.0-beta6",
+          "Microsoft.Framework.Logging.Abstractions": "1.0.0-beta6"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll": {}
+        }
+      },
       "Microsoft.AspNet.Antiforgery/1.0.0-beta6": {
         "dependencies": {
           "Microsoft.AspNet.DataProtection": "1.0.0-beta6",
@@ -1769,6 +1800,26 @@
           "lib/dnx451/Microsoft.VisualStudio.Web.BrowserLink.Loader.dll": {}
         }
       },
+      "Mvc6.JQuery.Datatables/1.0.0-beta6": {
+        "dependencies": {
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-beta6",
+          "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
+          "System.Linq.Dynamic": "1.0.4",
+          "TagHelpers": "1.0.0-t150827120117"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
+        }
+      },
       "Newtonsoft.Json/6.0.6": {
         "compile": {
           "lib/net45/Newtonsoft.Json.dll": {}
@@ -1989,6 +2040,36 @@
         "lib/net45/System.Interactive.Async.XML",
         "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll",
         "lib/portable-windows8+net45+wp8/System.Interactive.Async.XML"
+      ]
+    },
+    "Microsoft.ApplicationInsights/1.1.1-beta": {
+      "sha512": "aqtQ8KNFMGBFCmU3kkkEM7PlyPFvfh/1uKTxixD+myMzB9EjYeGOf0LvFnpkT1sp3voXfU8MUN+eYets8TutdQ==",
+      "files": [
+        "lib/dnxcore50/Microsoft.ApplicationInsights.dll",
+        "lib/dnxcore50/Microsoft.ApplicationInsights.XML",
+        "lib/net40/Microsoft.ApplicationInsights.dll",
+        "lib/net40/Microsoft.ApplicationInsights.XML",
+        "lib/net45/Microsoft.ApplicationInsights.dll",
+        "lib/net45/Microsoft.ApplicationInsights.XML",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
+        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.XML",
+        "lib/wp8/Microsoft.ApplicationInsights.dll",
+        "lib/wp8/Microsoft.ApplicationInsights.XML",
+        "Microsoft.ApplicationInsights.1.1.1-beta.nupkg",
+        "Microsoft.ApplicationInsights.1.1.1-beta.nupkg.sha512",
+        "Microsoft.ApplicationInsights.nuspec"
+      ]
+    },
+    "Microsoft.ApplicationInsights.AspNet/1.0.0-beta6": {
+      "sha512": "ph1v3p5piFUZ+5uXAfq3vnVgL4+LNEqEK9HCUOHyQb6yog/tR+Kv6fol4Z0EfQTF6vuRQ0ee8i9aNDZPlgnEtQ==",
+      "files": [
+        "lib/dnx451/Microsoft.ApplicationInsights.AspNet.dll",
+        "lib/dnx451/Microsoft.ApplicationInsights.AspNet.xml",
+        "lib/dnxcore50/Microsoft.ApplicationInsights.AspNet.dll",
+        "lib/dnxcore50/Microsoft.ApplicationInsights.AspNet.xml",
+        "Microsoft.ApplicationInsights.AspNet.1.0.0-beta6.nupkg",
+        "Microsoft.ApplicationInsights.AspNet.1.0.0-beta6.nupkg.sha512",
+        "Microsoft.ApplicationInsights.AspNet.nuspec"
       ]
     },
     "Microsoft.AspNet.Antiforgery/1.0.0-beta6": {
@@ -3466,6 +3547,16 @@
         "Microsoft.VisualStudio.Web.BrowserLink.Loader.nuspec"
       ]
     },
+    "Mvc6.JQuery.Datatables/1.0.0-beta6": {
+      "sha512": "lSDvItx5QPkDTCGz/QfSltQNyVCVk4WFVoAe4EbMoNkn9a/mMXLyDCHPr6bJZX7fW5BGIzNaFqW0KkkKlz4O+w==",
+      "files": [
+        "lib/dnx451/Mvc6.JQuery.Datatables.dll",
+        "lib/dnx451/Mvc6.JQuery.Datatables.xml",
+        "Mvc6.JQuery.Datatables.1.0.0-beta6.nupkg",
+        "Mvc6.JQuery.Datatables.1.0.0-beta6.nupkg.sha512",
+        "Mvc6.JQuery.Datatables.nuspec"
+      ]
+    },
     "Newtonsoft.Json/6.0.6": {
       "sha512": "w26uZNyCG5VeoKiEOJ4+9/o8koSofLKwHl7WLreIcp0U6r57L7WiRXmjp8MTKFw6dYNZ9AE0lw69WYbIhUsU9Q==",
       "files": [
@@ -3865,7 +3956,8 @@
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0-beta6",
       "Mvc6.JQuery.Datatables >= 1.0.0-beta6",
       "TagHelpers ",
-      "Microsoft.Framework.SecretManager >= 1.0.0-beta6"
+      "Microsoft.Framework.SecretManager >= 1.0.0-beta6",
+      "Microsoft.ApplicationInsights.AspNet >= 1.0.0-beta6"
     ],
     "DNX,Version=v4.5.1": []
   }

@@ -6,5 +6,8 @@
     "DefaultConnection": {
       "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=UserManagement;Trusted_Connection=True;MultipleActiveResultSets=true"
     }
+  },
+  "ApplicationInsights": {
+    "InstrumentationKey": "d9b1ee3e-a03e-43f7-a4fa-ee4f07ae91a2"
   }
 }

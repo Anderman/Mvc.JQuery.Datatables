@@ -40,17 +40,17 @@ default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
 
 #restore-npm-modules
   -// Find all dirs that contain a package.json file
-  var npmDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "package.json")}'
+  var npmDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "package.json").Where(directory => !directory.Contains("wwwroot"))}'
   npm npmCommand='install ${E("npm_install_options")}' each='var npmDir in npmDirs'
 
 #restore-bower-components
   -// Find all dirs that contain a bower.json file
-  var bowerDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "bower.json")}'
+  var bowerDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "bower.json").Where(directory => !directory.Contains("wwwroot"))}'
   bower each='var bowerDir in bowerDirs' bowerCommand='install ${E("bower_install_options")}'
 
 #run-grunt .restore-npm-modules .restore-bower-components target='initialize'
   -// Find all dirs that contain a gruntfile.js file
-  var gruntDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "gruntfile.js")}'
+  var gruntDirs = '${GetDirectoriesContaining(Directory.GetCurrentDirectory(), "gruntfile.js").Where(directory => !directory.Contains("wwwroot"))}'
   grunt each='var gruntDir in gruntDirs'
 
 #clean-bin-folder
@@ -223,8 +223,8 @@ default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
       Directory.Delete(commandsDirectory, recursive: true);
     }
   }
-
-#make-roslyn-fast
+  
+  #make-roslyn-fast
   ngen-roslyn
 
 #resx
@@ -330,8 +330,8 @@ functions @{
     {
         get { return !string.IsNullOrEmpty(E("KOREBUILD_PARALLEL")); }
     }
-
-    bool ShouldVerifyNupkgs
+    
+	bool ShouldVerifyNupkgs
     {
       get { return E("KOREBUILD_VERIFY_NUPKGS") == "1"; }
     }
