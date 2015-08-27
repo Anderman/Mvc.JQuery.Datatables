@@ -5,7 +5,7 @@
     "tags": [ "MVC", "Datatables", "JQuery" ],
     "projectUrl": "",
     "licenseUrl": "",
-    "webroot": "wwwroot",
+    "content": "**/wwwroot/*",
 
     "dependencies": {
         "Microsoft.AspNet.Mvc.Core": "6.0.0-beta6",

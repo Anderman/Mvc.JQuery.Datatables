@@ -1,5 +1,5 @@
 {
-    "projects": [ "src", "test", "../TagHelpers/src",  "Sample" ],
+    "projects": [ "src", "test", "../TagHelpers/src", "Sample" ],
     "sdk": {
         "version": "1.0.0-beta6"
     }

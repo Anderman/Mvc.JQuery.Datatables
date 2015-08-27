@@ -72,6 +72,7 @@ namespace UserManagement.Models
     {
         [Required]
         [EmailAddress]
+        [Display(Name ="Email",Prompt ="Enter email address")]
         public string Email { get; set; }
 
         [Required]
