@@ -229,3 +229,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Sample/UserManagement/project.lock.json
+Sample/UserManagement/project.lock.json
+Sample/UserManagement/wwwroot/_references.js
