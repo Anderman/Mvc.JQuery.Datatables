@@ -6,23 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - UserManagement</title>
 
-    <environment names="Development">
-        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
-        <link href="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
-        <link href="~/lib/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
-        <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
-        <link href="~/lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
+    <link href="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
+    <link href="~/lib/bootstrap-material-design/dist/css/roboto.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
+    <link href="~/lib/bootstrap-material-design/dist/css/material.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
+    <link href="~/lib/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet" asp-copy-src-to-fallback="development" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link href="~/css/bootstrapMD-datetimepicker.css" rel="stylesheet">
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/css/bootstrap.min.css"
-              asp-fallback-test-class="hidden" asp-fallback-test-property="visibility" asp-fallback-test-value="hidden" />
-        <link rel="stylesheet" href="~/css/site.css" asp-file-version="true" />
-    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/bootstrapMD-datetimepicker.css" rel="stylesheet">
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
@@ -52,54 +44,26 @@
         </footer>
     </div>
 
-    <environment names="Development">
-        <script src="http://datatables.net/release-datatables/media/js/jquery.js"></script>
-        <script src="~/js/site.js" asp-file-version="false"></script>
+    <script src="http://datatables.net/release-datatables/media/js/jquery.js"></script>
+    <script src="~/js/site.js" asp-file-version="false"></script>
 
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
-        <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>
-        <script src="~/lib/bootstrap-material-design/dist/js/ripples.min.js" asp-copy-src-to-fallback="development"></script>
-        <script src="~/lib/bootstrap-material-design/dist/js/material.min.js" asp-copy-src-to-fallback="development"></script>
-        <script src="~/js/mvc.jquery.datatables.js" asp-copy-src-to-fallback="development"></script>
-        <script src="~/js/bootstrapMD-datetimepicker.js" asp-copy-src-to-fallback="development"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"></script>
+    <script src="http://datatables.net/release-datatables/media/js/jquery.dataTables.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable" asp-warn-if-test-is-invalid="development"></script>
+    <script src="http://datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.TableTools" asp-warn-if-test-is-invalid="development"></script>
+    <script src="http://datatables.net/release-datatables/extensions/Plugins/integration/bootstrap/3/dataTables.bootstrap.js" asp-copy-src-to-fallback="development" asp-fallback-test="window.jQuery().dataTable.ext.renderer.pageButton.bootstrap" asp-warn-if-test-is-invalid="development"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" asp-copy-src-to-fallback="development"></script>
+    <script src="~/lib/bootstrap-material-design/dist/js/ripples.min.js" asp-copy-src-to-fallback="development"></script>
+    <script src="~/lib/bootstrap-material-design/dist/js/material.min.js" asp-copy-src-to-fallback="development"></script>
+    <script src="~/lib/jquery.are-you-sure/jquery.are-you-sure.js" asp-copy-src-to-fallback="development"></script>
+    <script src="~/js/mvc.jquery.datatables.js" asp-copy-src-to-fallback="development"></script>
+    <script src="~/js/bootstrapMD-datetimepicker.js" asp-copy-src-to-fallback="development"></script>
 
-        <script>
-            $(document).ready(function () {
-                // This command is used to initialize some elements and make them work properly
-                $.material.init();
-            });
-        </script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="//ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-
-
-        </script>
-        <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.0.0/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-
-
-        </script>
-        <script src="//ajax.aspnetcdn.com/ajax/hammer.js/2.0.4/hammer.min.js"
-                asp-fallback-src="~/lib/hammer.js/hammer.js"
-                asp-fallback-test="window.Hammer">
-
-
-        </script>
-        <script src="//ajax.aspnetcdn.com/ajax/bootstrap-touch-carousel/0.8.0/js/bootstrap-touch-carousel.js"
-                asp-fallback-src="~/lib/bootstrap-touch-carousel/dist/js/bootstrap-touch-carousel.js"
-                asp-fallback-test="window.Hammer && window.Hammer.Instance">
-
-
-        </script>
-        <script src="~/js/site.js" asp-file-version="true"></script>
-    </environment>
+    <script>
+        $(document).ready(function () {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

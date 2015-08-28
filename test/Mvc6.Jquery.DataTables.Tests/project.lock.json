@@ -1290,6 +1290,21 @@
           "lib/net45/System.Net.Http.Primitives.dll": {}
         }
       },
+      "Microsoft.Net.Http.Client/1.0.0-beta6-15001": {
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.Net.Http.Client.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.Net.Http.Client.dll": {}
+        }
+      },
       "Microsoft.Net.Http.Headers/1.0.0-beta6": {
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -2634,6 +2649,20 @@
         "Microsoft.Net.Http.2.2.29.nupkg",
         "Microsoft.Net.Http.2.2.29.nupkg.sha512",
         "Microsoft.Net.Http.nuspec"
+      ]
+    },
+    "Microsoft.Net.Http.Client/1.0.0-beta6-15001": {
+      "sha512": "YVd3qFLUjwDGiLIFzokXwciF93412F4Ipa1y0Ds/rGQfhP4qkVTSTBAYLhshmR5J5N0x+AsHO+XZm2Vz76hkZA==",
+      "files": [
+        "lib/dnx451/Microsoft.Net.Http.Client.dll",
+        "lib/dnx451/Microsoft.Net.Http.Client.xml",
+        "lib/dnxcore50/Microsoft.Net.Http.Client.dll",
+        "lib/dnxcore50/Microsoft.Net.Http.Client.xml",
+        "lib/net45/Microsoft.Net.Http.Client.dll",
+        "lib/net45/Microsoft.Net.Http.Client.xml",
+        "Microsoft.Net.Http.Client.1.0.0-beta6-15001.nupkg",
+        "Microsoft.Net.Http.Client.1.0.0-beta6-15001.nupkg.sha512",
+        "Microsoft.Net.Http.Client.nuspec"
       ]
     },
     "Microsoft.Net.Http.Headers/1.0.0-beta6": {
