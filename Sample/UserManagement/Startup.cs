@@ -35,10 +35,9 @@ namespace UserManagement
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
-
             if (env.IsDevelopment())
             {
-                // This reads the configuration keys from the secret store.  file://%APPDATA%\microsoft\UserSecrets\<applicationId>\secrets.json 
+                // This reads the configuration keys from the secret store.  file:\\%APPDATA%\microsoft\UserSecrets\<applicationId>\secrets.json 
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }
@@ -52,6 +51,7 @@ namespace UserManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration);
             // Add Entity Framework services to the services container.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -97,17 +97,18 @@ namespace UserManagement
             // Register application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
             loggerFactory.MinimumLevel = LogLevel.Debug;
             //loggerFactory.AddConsole();
             // Add the console logger.
             loggerFactory.AddConsole(minLevel: LogLevel.Warning);
 
+            app.UseApplicationInsightsExceptionTelemetry();
             //loggerFactory.AddProvider(new SqlLoggerProvider());
 
             // Configure the HTTP request pipeline.
@@ -127,7 +128,6 @@ namespace UserManagement
             }
             app.EnsureMigrationsApplied();
             app.EnsureSampleData().Wait();
-            app.UseApplicationInsightsExceptionTelemetry();
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
