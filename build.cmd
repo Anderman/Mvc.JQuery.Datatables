@@ -20,12 +20,14 @@ rem .nuget\NuGet.exe sources
 rem .nuget\NuGet.exe
 
 :restore
-IF EXIST packages\KoreBuild goto dnvm
+IF EXIST packages\KoreBuild goto sake
 IF DEFINED BUILDCMD_RELEASE (
 	.nuget\NuGet.exe install KoreBuild -version 0.2.1-%BUILDCMD_RELEASE% -ExcludeVersion -o packages -nocache -pre
 ) ELSE (
 	.nuget\NuGet.exe install KoreBuild -ExcludeVersion -o packages -nocache -pre
 )
+:sake
+IF EXIST packages\Sake goto dnvm
 .nuget\NuGet.exe install Sake -version 0.2 -o packages -ExcludeVersion
 
 :dnvm
