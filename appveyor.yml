@@ -19,8 +19,8 @@ deploy_project: simple-web
 
 # download project artifacts
 before_deploy:
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/deploy.ps1'))
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/deploy.ps1'))
 
 # here is your own custom deployment code
 deploy_script:
-- '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
+  - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
