@@ -25,7 +25,7 @@
         "Microsoft.Framework.Logging": "1.0.0-beta6",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta6",
-        "Mvc6.JQuery.Datatables": "1.0.0-beta6",
+        "Mvc6.JQuery.Datatables": "1.0.0-*",
         "TagHelpers": "",
         "Microsoft.Framework.SecretManager": "1.0.0-beta6",
         "Microsoft.ApplicationInsights.AspNet": "1.0.0-beta6"
