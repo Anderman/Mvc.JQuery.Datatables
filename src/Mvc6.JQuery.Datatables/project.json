@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0-beta6",
+    "version": "1.0.0-*",
     "description": "MVC.JQuery.Datatables",
     "authors": [ "Thom Kiesewetter" ],
     "tags": [ "MVC", "Datatables", "JQuery" ],

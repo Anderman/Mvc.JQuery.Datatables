@@ -13,8 +13,6 @@ default BUILD_DIR='${Path.Combine(TARGET_DIR, "build")}'
 default TEST_DIR='${Path.Combine(TARGET_DIR, "test")}'
 default Configuration='${E("Configuration")}'
 default Quiet='${ false }'
-default PACKAGELIST_JSON_FILENAME = 'packages.json'
-default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
 
 @{
   if (string.IsNullOrEmpty(E("DNX_BUILD_VERSION")))
@@ -92,54 +90,32 @@ default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
 
 #ci-deep-clean .deep-clean target='clean' if='IsTeamCity'
 
-#build-compile target='compile' if='!IsBuildV2 && Directory.Exists("src")'
+#build-compile target='compile' if='Directory.Exists("src")'
   @{
-    var projectFiles = Files.Include("src/**/project.json").ToList();
-    if (ShouldRunInParallel)
+    Log.Info(string.Format("Before pack"));
+    if (IsBuildV2) 
     {
-        Parallel.ForEach(projectFiles, projectFile => DnuPack(projectFile, BUILD_DIR, Configuration));
+        const string buildPattern = "src/**";
+        DnuPack(buildPattern, BUILD_DIR, Configuration);
     }
     else
     {
-        projectFiles.ForEach(projectFile => DnuPack(projectFile, BUILD_DIR, Configuration));
+        var projectFiles = Files.Include("src/**/project.json").ToList();
+        if (ShouldRunInParallel)
+        {
+            Parallel.ForEach(projectFiles, projectFile => DnuPack(projectFile, BUILD_DIR, Configuration));
+        }
+        else
+        {
+            projectFiles.ForEach(projectFile => DnuPack(projectFile, BUILD_DIR, Configuration));
+        }
     }
     
     foreach (var nupkg in Files.Include(Path.Combine(BUILD_DIR, "*/*.nupkg")))
     {
+        Log.Info(string.Format("Copy from:{0} to:{1}", nupkg, BUILD_DIR));
         File.Copy(nupkg, Path.Combine(BUILD_DIR, Path.GetFileName(nupkg)), true);
     }
-  }
-
-#build-compile target='compile' if='IsBuildV2'
-  @{
-      // If the src folder, build and create the packages
-      if (Directory.Exists("src")) 
-      {
-          DnuPack("src/**", BUILD_DIR, Configuration);
-          
-          foreach (var nupkg in Files.Include(Path.Combine(BUILD_DIR, "*/*.nupkg")))
-          {
-              File.Copy(nupkg, Path.Combine(BUILD_DIR, Path.GetFileName(nupkg)), true);
-          }
-      }
-      
-      // For test and samples only check if they compile
-      var projectsToBuild = new List<string>();
-      if (Directory.Exists("test")) 
-      {
-          projectsToBuild.Add("test/**");
-      }
-      if (Directory.Exists("samples")) 
-      {
-          projectsToBuild.Add("samples/**");  
-      }
-      
-      if (projectsToBuild.Any()) 
-      {
-          DnuBuild(
-            string.Join(";", projectsToBuild), 
-            Configuration);
-      }
   }
 
 #native-compile target='compile' if='!IsMono && Directory.Exists(Path.Combine(BASE_DIR, "src"))'
@@ -200,7 +176,7 @@ default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
     }
   }
 
-#build-samples target='test' if='!IsBuildV2 && Directory.Exists("samples")'
+#build-samples target='test' if='Directory.Exists("samples")'
   @{
     var projectFiles = Files.Include("samples/**/project.json").ToList();
     if (ShouldRunInParallel)
@@ -213,18 +189,7 @@ default DNX_TOOLS_FEED = 'https://www.myget.org/F/dnxtools/api/v2'
     }
   }
 
-#nuget-verify target='test' if='File.Exists(PACKAGELIST_JSON_FILENAME) && ShouldVerifyNupkgs' description='Verify if all the packages are generated properly'
-  var commandsDirectory = '${Path.Combine(BASE_DIR, "commands")}'
-  exec program='cmd' commandline='/C dnu commands install --source ${DNX_TOOLS_FEED} NuGetPackageVerifier --packages "${commandsDirectory}"'
-  exec program='cmd' commandline='/C ${Path.Combine(commandsDirectory, "nugetverify")} "${BUILD_DIR}" "${Path.Combine(BASE_DIR, PACKAGELIST_JSON_FILENAME)}"'
-  @{
-    if (Directory.Exists(commandsDirectory))
-    {
-      Directory.Delete(commandsDirectory, recursive: true);
-    }
-  }
-  
-  #make-roslyn-fast
+#make-roslyn-fast
   ngen-roslyn
 
 #resx
@@ -329,11 +294,6 @@ functions @{
     bool ShouldRunInParallel
     {
         get { return !string.IsNullOrEmpty(E("KOREBUILD_PARALLEL")); }
-    }
-    
-	bool ShouldVerifyNupkgs
-    {
-      get { return E("KOREBUILD_VERIFY_NUPKGS") == "1"; }
     }
 }
 
