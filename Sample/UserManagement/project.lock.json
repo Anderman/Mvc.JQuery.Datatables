@@ -1734,6 +1734,21 @@
           "lib/net45/System.Net.Http.Primitives.dll": {}
         }
       },
+      "Microsoft.Net.Http.Client/1.0.0-beta6-15001": {
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core",
+          "System.Net.Http"
+        ],
+        "compile": {
+          "lib/dnx451/Microsoft.Net.Http.Client.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Microsoft.Net.Http.Client.dll": {}
+        }
+      },
       "Microsoft.Net.Http.Headers/1.0.0-beta6": {
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -1798,26 +1813,6 @@
         },
         "runtime": {
           "lib/dnx451/Microsoft.VisualStudio.Web.BrowserLink.Loader.dll": {}
-        }
-      },
-      "Mvc6.JQuery.Datatables/1.0.0-beta6": {
-        "dependencies": {
-          "Microsoft.AspNet.Mvc.Core": "6.0.0-beta6",
-          "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
-          "System.Linq.Dynamic": "1.0.4",
-          "TagHelpers": "1.0.0-t150827120117"
-        },
-        "frameworkAssemblies": [
-          "Microsoft.CSharp",
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": {
-          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
-        },
-        "runtime": {
-          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
         }
       },
       "Newtonsoft.Json/6.0.6": {
@@ -3491,6 +3486,20 @@
         "Microsoft.Net.Http.nuspec"
       ]
     },
+    "Microsoft.Net.Http.Client/1.0.0-beta6-15001": {
+      "sha512": "YVd3qFLUjwDGiLIFzokXwciF93412F4Ipa1y0Ds/rGQfhP4qkVTSTBAYLhshmR5J5N0x+AsHO+XZm2Vz76hkZA==",
+      "files": [
+        "lib/dnx451/Microsoft.Net.Http.Client.dll",
+        "lib/dnx451/Microsoft.Net.Http.Client.xml",
+        "lib/dnxcore50/Microsoft.Net.Http.Client.dll",
+        "lib/dnxcore50/Microsoft.Net.Http.Client.xml",
+        "lib/net45/Microsoft.Net.Http.Client.dll",
+        "lib/net45/Microsoft.Net.Http.Client.xml",
+        "Microsoft.Net.Http.Client.1.0.0-beta6-15001.nupkg",
+        "Microsoft.Net.Http.Client.1.0.0-beta6-15001.nupkg.sha512",
+        "Microsoft.Net.Http.Client.nuspec"
+      ]
+    },
     "Microsoft.Net.Http.Headers/1.0.0-beta6": {
       "serviceable": true,
       "sha512": "PeBHRiu9gSlP31Z1V3WEmIEb+1YJDdNdQY7xsSA98d3GnZqi+7ZERXVNcDDYMI16QViA/+Gq10HtYti8GwDHtQ==",
@@ -3545,16 +3554,6 @@
         "Microsoft.VisualStudio.Web.BrowserLink.Loader.14.0.0-beta6.nupkg",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader.14.0.0-beta6.nupkg.sha512",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader.nuspec"
-      ]
-    },
-    "Mvc6.JQuery.Datatables/1.0.0-beta6": {
-      "sha512": "lSDvItx5QPkDTCGz/QfSltQNyVCVk4WFVoAe4EbMoNkn9a/mMXLyDCHPr6bJZX7fW5BGIzNaFqW0KkkKlz4O+w==",
-      "files": [
-        "lib/dnx451/Mvc6.JQuery.Datatables.dll",
-        "lib/dnx451/Mvc6.JQuery.Datatables.xml",
-        "Mvc6.JQuery.Datatables.1.0.0-beta6.nupkg",
-        "Mvc6.JQuery.Datatables.1.0.0-beta6.nupkg.sha512",
-        "Mvc6.JQuery.Datatables.nuspec"
       ]
     },
     "Newtonsoft.Json/6.0.6": {
