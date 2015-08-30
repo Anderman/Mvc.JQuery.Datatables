@@ -1,7 +1,8 @@
 init:
   - git config --global core.autocrlf true
-# build_script:
-#   - build.cmd --quiet --parallel
+build_script:
+   - echo hallo
+   - build.cmd --quiet --parallel
 clone_depth: 1
 test: off
 deploy: on
