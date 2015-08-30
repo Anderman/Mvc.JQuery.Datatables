@@ -1,9 +1,10 @@
 init:
   - git config --global core.autocrlf true
 build_script:
-  - build.cmd --quiet --parallel install
+  - build.cmd --quiet --parallel
 clone_depth: 1
 test: off
+deploy: on
 # environment:
   # deploy_project: simple-web
   # deploy_version: ''            # download artifacts from latest build if no version specified
