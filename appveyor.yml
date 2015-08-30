@@ -5,23 +5,23 @@ build_script:
 clone_depth: 1
 test: off
 environment:
-  deploy_project: simple-web
-  deploy_version: ''            # download artifacts from latest build if no version specified
-  deploy_artifact: ''           # download all artifacts if empty
+  #deploy_project: simple-web
+  #deploy_version: ''            # download artifacts from latest build if no version specified
+  #deploy_artifact: ''           # download all artifacts if empty
   
   # deployment specific settings
   # we are going to deploy using Web Deploy, so...
-  webdeploy_package: '%appveyor_build_folder%\MyWebApp.zip'
-  webdeploy_server: https://ftp-test.scm.azurewebsites.net:443/msdeploy.axd?site=ftp-test
-  webdeploy_site: ftp-test
-  webdeploy_username: $ftp-test
-  webdeploy_password:
-    secure: rXrlAkNm0hNNQeUWN1bHWFKgqi5GLvQo0YJbithkG3/smINhmDF07ePn9I3FAbFeQotlOpT9jMA5b0/HiRAntA==
+  # webdeploy_package: '%appveyor_build_folder%\MyWebApp.zip'
+  # webdeploy_server: mvcjquerydatatables.scm.azurewebsites.net:443
+  # webdeploy_site: MVCJqueryDatatables
+  # webdeploy_username: $MVCJqueryDatatables
+  # webdeploy_password:zhuBYXp213NQJK3KkhjtmpdMtSorBce9bkEESvzwFcxHfKueKMW96vyXxTtf
+
 
 # download project artifacts
-before_deploy:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/deploy.ps1'))
+# before_deploy:
+#   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/deploy.ps1'))
 
 # here is your own custom deployment code
-deploy_script:
-  - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
+# deploy_script:
+#   - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
