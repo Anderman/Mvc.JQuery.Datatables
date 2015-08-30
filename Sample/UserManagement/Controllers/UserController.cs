@@ -59,7 +59,7 @@ namespace UserManagement.Controllers
             //var arr = q.ToArray();
             //var z = new JsonResult(q.ToArray()); 
             //var qq = q.Join(DbContext.Roles, ur => ur.Roles.Select(a=>a.RoleId), r => r.Id, (ur, Roles) => new { ur, Roles });
-            var qq = DbContext.UserRoles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => new { r.Name, ur.UserId });
+            var yy = DbContext.UserRoles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => new { r.Name, ur.UserId });
             var z = (from u in DbContext.Users//.Include(l => l.Logins).Include(r => r.Roles)
                      select new
                      {
@@ -70,7 +70,7 @@ namespace UserManagement.Controllers
                          u.TwoFactorEnabled,
                          u.LockoutEnd,
                          Logins = u.Logins.Select(l => new { LoginProvider = l.LoginProvider }),
-                         Roles = qq.Where(ur => ur.UserId == u.Id),
+                         Roles = yy.Where(ur => ur.UserId == u.Id),
                          //Roles = u.Roles.Join(DbContext.Roles, ur => ur.RoleId, rr => rr.Id, (ur, role2) => role2).Select(rr => rr),
                      });
             var zz = z.ToArray();
