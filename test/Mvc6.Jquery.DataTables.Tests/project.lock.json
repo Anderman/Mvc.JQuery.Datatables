@@ -1327,6 +1327,26 @@
           "lib/net40/Moq.dll": {}
         }
       },
+      "Mvc6.JQuery.Datatables/1.0.0-beta6-build": {
+        "dependencies": {
+          "Microsoft.AspNet.Mvc.Core": "6.0.0-beta6",
+          "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
+          "System.Linq.Dynamic": "1.0.4",
+          "TagHelpers": "1.0.0-beta6-build"
+        },
+        "frameworkAssemblies": [
+          "Microsoft.CSharp",
+          "mscorlib",
+          "System",
+          "System.Core"
+        ],
+        "compile": {
+          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
+        },
+        "runtime": {
+          "lib/dnx451/Mvc6.JQuery.Datatables.dll": {}
+        }
+      },
       "Newtonsoft.Json/6.0.6": {
         "compile": {
           "lib/net45/Newtonsoft.Json.dll": {}
@@ -2693,6 +2713,16 @@
         "Moq.4.2.1312.1622.nupkg",
         "Moq.4.2.1312.1622.nupkg.sha512",
         "Moq.nuspec"
+      ]
+    },
+    "Mvc6.JQuery.Datatables/1.0.0-beta6-build": {
+      "sha512": "FuV2iAbuO4X8FlXfmeE3kEMcQVQaBz88zOFWc0frnioisi7bVdVSW3OwalaQtLz2/i7AJD1EEP/RhT2OJ5eiAg==",
+      "files": [
+        "lib/dnx451/Mvc6.JQuery.Datatables.dll",
+        "lib/dnx451/Mvc6.JQuery.Datatables.xml",
+        "Mvc6.JQuery.Datatables.1.0.0-beta6-build.nupkg",
+        "Mvc6.JQuery.Datatables.1.0.0-beta6-build.nupkg.sha512",
+        "Mvc6.JQuery.Datatables.nuspec"
       ]
     },
     "Newtonsoft.Json/6.0.6": {
