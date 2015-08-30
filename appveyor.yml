@@ -4,10 +4,10 @@ build_script:
   - build.cmd --quiet --parallel install
 clone_depth: 1
 test: off
-environment:
-  #deploy_project: simple-web
-  #deploy_version: ''            # download artifacts from latest build if no version specified
-  #deploy_artifact: ''           # download all artifacts if empty
+# environment:
+  # deploy_project: simple-web
+  # deploy_version: ''            # download artifacts from latest build if no version specified
+  # deploy_artifact: ''           # download all artifacts if empty
   
   # deployment specific settings
   # we are going to deploy using Web Deploy, so...
