@@ -9,6 +9,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Mvc6.Jquery.DataTables.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E9CE0F0-AC70-402A-AF9D-3EDD9D2EA40F}"
 	ProjectSection(SolutionItems) = preProject
+		.deployment = .deployment
 		appveyor.yml = appveyor.yml
 		build.cmd = build.cmd
 		deploy.cmd = deploy.cmd
