@@ -8,6 +8,14 @@ rem @if "%SCM_TRACE_LEVEL%" NEQ "4" @echo off
 :: Prerequisites
 :: -------------
 
+::Verify if appvoyer did a succesfull build
+for /f "delims=" %A in ('git rev-parse HEAD') do curl https://api.github.com/repos/Anderman/Mvc.JQuery.Datatables/statuses/%A | findstr \"state\" | findstr succes
+IF ERRORLEVEL NEQ 0 goto nodesetup
+echo Appvoyer failed
+goto error
+
+
+:nodesetup
 :: Verify node.js installed
 where node 2>nul >nul
 IF %ERRORLEVEL% NEQ 0 (
