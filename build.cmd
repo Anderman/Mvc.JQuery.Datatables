@@ -15,7 +15,7 @@ md .nuget
 copy %CACHED_NUGET% .nuget\nuget.exe > nul
 
 .nuget\NuGet.exe sources add -Name aspnetrelease -Source https://www.myget.org/F/aspnetrelease/api/v2
-rem .nuget\NuGet.exe sources 
+.nuget\NuGet.exe sources 
 rem .nuget\NuGet.exe
 
 :restore
@@ -47,6 +47,7 @@ if %ERRORLEVEL% EQU 0 goto build
 CALL packages\KoreBuild\build\dnvm use default -runtime CLR -arch x86	
 
 :build
+.nuget\NuGet.exe sources 
 packages\Sake\tools\Sake.exe -I packages\KoreBuild\build -v -f makefile.shade %*
 
 echo END BUILD SCRIPT!!!
