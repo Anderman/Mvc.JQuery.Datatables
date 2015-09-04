@@ -48,3 +48,5 @@ CALL packages\KoreBuild\build\dnvm use default -runtime CLR -arch x86
 
 :build
 packages\Sake\tools\Sake.exe -I packages\KoreBuild\build -v -f makefile.shade %*
+
+echo END BUILD SCRIPT!!!
