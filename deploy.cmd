@@ -13,7 +13,7 @@ for /f "delims=" %A in ('git rev-parse HEAD') do curl https://api.github.com/rep
 IF ERRORLEVEL NEQ 0 goto nodesetup
 echo Appvoyer failed
 goto error
-
+ 
 
 :nodesetup
 :: Verify node.js installed
