@@ -1,11 +1,11 @@
-init:
-  - git config --global core.autocrlf true
-build_script:
-   - echo hallo
-   # - build.cmd --quiet --parallel
-clone_depth: 1
-test: off
-deploy: on
+#init:
+#  - git config --global core.autocrlf true
+#build_script:
+#   - echo hallo
+#   # - build.cmd --quiet --parallel
+#clone_depth: 1
+#test: off
+#deploy: on
 # environment:
   # deploy_project: simple-web
   # deploy_version: ''            # download artifacts from latest build if no version specified
@@ -27,3 +27,9 @@ deploy: on
 # here is your own custom deployment code
 # deploy_script:
 #   - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
+on_success:
+- echo build success goto deploy
+- git config --global credential.helper store
+- ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+- git commit -m build
+- git push
