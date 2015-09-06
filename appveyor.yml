@@ -44,8 +44,9 @@ environment:
   access_token: 
      secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
 cache:
-- bower_components
-- node_modules
+#- bower_components
+- sample\usermanagement\node_modules
+- C:\Users\appveyor\.dnx\packages
 - C:\Users\appveyor\AppData\Roaming\npm
 build_script:
 - echo start build
