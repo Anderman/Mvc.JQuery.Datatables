@@ -23,7 +23,7 @@
   - C:\Users\appveyor\AppData\Roaming\npm
   build_script:
   - echo start build
-  - build.cmd  install
+  - build.cmd  verify
   - echo end build
   test_script:
   - echo test
