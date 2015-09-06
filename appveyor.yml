@@ -21,52 +21,57 @@
 
 
 # download project artifacts
-init:
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-- ps: Get-ChildItem "env:"
-on_finish:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+-
+  branches:
+    only:
+      - master
+-
+    init:
+    - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+    - ps: Get-ChildItem "env:"
+    on_finish:
+    - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-# here is your own custom deployment code
-# deploy_script:
-#   - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
-version: 1.0.{build}
-environment:
-  APIKEY: efb6f507-0d0c-4628-9e69-7fb38810615e
-  NUGET_PUBLISH_FEED: https://nuget.org/
-  BUILDCMD_RELEASE: beta6
-  DNX_FEED: https://www.nuget.org/api/v2
-  source_IisApp: PublishTemp\wwwroot
-  dest_IisApp: MVCJqueryDatatables
-  dest_ComputerName: https://mvcjquerydatatables.scm.azurewebsites.net/msdeploy.axd
-  dest_UserName: $MVCJqueryDatatables
-  dest_Password: zhuBYXp213NQJK3KkhjtmpdMtSorBce9bkEESvzwFcxHfKueKMW96vyXxTtf
-  access_token: 
-     secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
-cache:
-#- bower_components
-- sample\usermanagement\node_modules
-- C:\Users\appveyor\.dnx\packages
-- C:\Users\appveyor\AppData\Roaming\npm
-build_script:
-- echo start build
-- build.cmd  install
-- echo end build
-test_script:
-- echo test
-artifacts:
-- path: '**\*.nukpg'
-  type: WebDeployPackage
-deploy: off
-on_failure:
-- echo build failed
-on_success:
-- echo build success goto deploy
-- git config --global credential.helper store
-- git config --global user.email thom@kiesewetter.nl
-- git config --global push.default simple
-- ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://eb18825bac19311c122d2803008210215f60ee5f:x-oauth-basic@github.com`n"
-- git clean -f
-- git checkout master
-- git merge dev
-- git push
+    # here is your own custom deployment code
+    # deploy_script:
+    #   - '"C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:package="%webdeploy_package%" -dest:auto,ComputerName="%webdeploy_server%",UserName="%webdeploy_username%",Password="%webdeploy_password%",AuthType="Basic" -setParam:"IIS Web Application Name"="%webdeploy_site%" -allowUntrusted'
+    version: 1.0.{build}
+    environment:
+        APIKEY: efb6f507-0d0c-4628-9e69-7fb38810615e
+        NUGET_PUBLISH_FEED: https://nuget.org/
+        BUILDCMD_RELEASE: beta6
+        DNX_FEED: https://www.nuget.org/api/v2
+        source_IisApp: PublishTemp\wwwroot
+        dest_IisApp: MVCJqueryDatatables
+        dest_ComputerName: https://mvcjquerydatatables.scm.azurewebsites.net/msdeploy.axd
+        dest_UserName: $MVCJqueryDatatables
+        dest_Password: zhuBYXp213NQJK3KkhjtmpdMtSorBce9bkEESvzwFcxHfKueKMW96vyXxTtf
+        access_token: 
+            secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
+    cache:
+    #- bower_components
+    - sample\usermanagement\node_modules
+    - C:\Users\appveyor\.dnx\packages
+    - C:\Users\appveyor\AppData\Roaming\npm
+    build_script:
+    - echo start build
+    - build.cmd  install
+    - echo end build
+    test_script:
+    - echo test
+    artifacts:
+    - path: '**\*.nukpg'
+        type: WebDeployPackage
+    deploy: off
+    on_failure:
+    - echo build failed
+    on_success:
+    - echo build success goto deploy
+    - git config --global credential.helper store
+    - git config --global user.email thom@kiesewetter.nl
+    - git config --global push.default simple
+    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://eb18825bac19311c122d2803008210215f60ee5f:x-oauth-basic@github.com`n"
+    - git clean -f
+    - git checkout master
+    - git merge dev
+    - git push
