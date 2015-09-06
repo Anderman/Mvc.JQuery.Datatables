@@ -41,7 +41,7 @@ environment:
   dest_UserName: $MVCJqueryDatatables
   dest_Password: zhuBYXp213NQJK3KkhjtmpdMtSorBce9bkEESvzwFcxHfKueKMW96vyXxTtf
   access_token: 
-     secure: O9GUWLf9x2kqF/Q2IetkQwHfKFT0e0zSzhOvbiZ67m+EmlNfQD4r8qYOTqkO3jvJ
+     secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
 cache:
 - bower_components
 - node_modules
@@ -63,4 +63,4 @@ on_success:
 - git config --global credential.helper store
 - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git commit -m build
-- git push
+- git push
