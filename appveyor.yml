@@ -3,6 +3,10 @@
     - master
   init:
   - ps: Get-ChildItem "env:"
+  build_script:
+  - echo start build
+  - build.cmd  install
+  - echo end build
 - branches:
     only:
     - dev
