@@ -59,9 +59,6 @@
    - echo end build
    test_script:
    - echo test
-   artifacts:
-   - path: '**\*.nukpg'
-       type: WebDeployPackage
    deploy: off
    on_failure:
    - echo build failed
