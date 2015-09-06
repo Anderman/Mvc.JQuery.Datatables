@@ -1,15 +1,6 @@
 - branches:
-    only:
+    except:
     - master
-  init:
-  - ps: Get-ChildItem "env:"
-  build_script:
-  - echo start build
-  - build.cmd  install
-  - echo end build
-- branches:
-    only:
-    - dev
   init:
   - ps: Get-ChildItem "env:"
   on_finish: 
