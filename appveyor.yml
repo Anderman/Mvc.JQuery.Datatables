@@ -64,6 +64,7 @@ on_success:
 - echo build success goto deploy
 - git config --global credential.helper store
 - git config --global user.email thom@kiesewetter.nl
+- git config --global push.default simple
 - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://eb18825bac19311c122d2803008210215f60ee5f:x-oauth-basic@github.com`n"
 - git clean -f
 - git checkout master
