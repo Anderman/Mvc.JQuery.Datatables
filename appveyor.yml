@@ -65,6 +65,6 @@ on_success:
 - git config --global user.email thom@kiesewetter.nl
 - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://eb18825bac19311c122d2803008210215f60ee5f:x-oauth-basic@github.com`n"
 - git clean -f
-- git git checkout master
+- git checkout master
 - git merge dev
 - git push
