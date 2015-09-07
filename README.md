@@ -30,6 +30,7 @@ This [Demo Usermanagement](http://mvcjquerydatatables.azurewebsites.net) is an e
 * jquery Datatables with asp.net 5
 * JQuery datatable tools
 * JQuery datatable edit (light)
+* Bootstrap Material design
 
 the demo uses a CI integration with appveyor and azure
 
