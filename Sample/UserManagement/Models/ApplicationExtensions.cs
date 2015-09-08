@@ -15,7 +15,7 @@ namespace UserManagement.Models
         public static void EnsureMigrationsApplied(this IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices.GetService<ApplicationDbContext>();
-            context.Database.ApplyMigrations();
+            context.Database.Migrate();
         }
 
         public async static Task EnsureSampleData(this IApplicationBuilder app)

@@ -25,7 +25,7 @@ namespace UserManagement.Models
         [Display(Description = "Email adress is used for login")]
         public override string Email { get { return base.Email; } set { base.Email = value; } }
     }
-    public class ApplicationUserRoles : IdentityUserRole
+    public class ApplicationUserRoles : IdentityUserRole<string>
     {
         public virtual ApplicationUser Role { get; set; }
     }
@@ -41,7 +41,7 @@ namespace UserManagement.Models
         }
         public bool AllMigrationsApplied()
         {
-            return !((IMigrator)((IAccessor<IServiceProvider>)Database).Service.GetService(typeof(IMigrator))).GetUnappliedMigrations().Any();
+            return true; //!((IMigrator)((IAccessor<IServiceProvider>)Database).Service.GetService(typeof(IMigrator))).;
         }
     }
     public enum Roles

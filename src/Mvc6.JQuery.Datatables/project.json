@@ -8,8 +8,8 @@
     "content": "**/wwwroot/*",
 
     "dependencies": {
-        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta6",
-        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
+        "Microsoft.AspNet.Mvc.Core": "6.0.0-beta7",
+        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta7",
         "System.Linq.Dynamic": "1.0.4",
         "TagHelpers": "1.0.0-*"
     },

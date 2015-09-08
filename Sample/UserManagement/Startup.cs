@@ -20,9 +20,9 @@ using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
-using Microsoft.Framework.Runtime;
 using UserManagement.Models;
 using UserManagement.Services;
+using Microsoft.Dnx.Runtime;
 
 namespace UserManagement
 {

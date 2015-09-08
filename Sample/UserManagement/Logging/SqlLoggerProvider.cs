@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Microsoft.Framework.Logging;
 
 namespace UserManagement.Logging
@@ -19,6 +20,11 @@ namespace UserManagement.Logging
             }
             //return new SqlLogger();
             return NullLogger.Instance;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

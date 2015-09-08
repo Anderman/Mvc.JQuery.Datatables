@@ -7,13 +7,12 @@
     "licenseUrl": "",
     "dependencies": {
         "Moq": "4.2.1312.1622",
-        "xunit.assert": "2.1.0-beta3-build3029",
-        "xunit.extensibility.execution": "2.1.0-beta3-build3029",
-        "Microsoft.AspNet.TestHost": "1.0.0-beta6",
+        "xunit.runner.aspnet": "2.0.0-aspnet-*",
+        "Microsoft.AspNet.TestHost": "1.0.0-beta7",
         "Mvc6.JQuery.Datatables": "1.0.0-*"
     },
     "commands": {
-        "test": "xunit.runner.dnx"
+        "test": "xunit.runner.aspnet"
     },
     "frameworks": {
         "dnx451": {
