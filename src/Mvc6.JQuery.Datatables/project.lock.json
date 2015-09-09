@@ -1135,7 +1135,7 @@
           "lib/portable-net45+win8+wp8+wpa81/System.Collections.Immutable.dll": {}
         }
       },
-      "System.Linq.Dynamic/1.0.4": {
+      "System.Linq.Dynamic/1.0.0": {
         "type": "package",
         "compile": {
           "lib/net40/System.Linq.Dynamic.dll": {}
@@ -2304,13 +2304,13 @@
         "System.Collections.Immutable.nuspec"
       ]
     },
-    "System.Linq.Dynamic/1.0.4": {
+    "System.Linq.Dynamic/1.0.0": {
       "type": "package",
-      "sha512": "WfRPE4I3T4ED6T3SJGkPQxCfmS6mG2c9ww3OeXf8f+bLFL/k19fSH7jR6SZfw2r9F2wA0PZjFNbeTYVdYuTD8w==",
+      "sha512": "ZctavbtTYaGYhdmdTfiVW6bY9xNFnOPhTPjhjZBIFLlBjAzus6REraAt4prrxrEpxZxMnO67XovsJclWHGzokA==",
       "files": [
         "lib/net40/System.Linq.Dynamic.dll",
-        "System.Linq.Dynamic.1.0.4.nupkg",
-        "System.Linq.Dynamic.1.0.4.nupkg.sha512",
+        "System.Linq.Dynamic.1.0.0.nupkg",
+        "System.Linq.Dynamic.1.0.0.nupkg.sha512",
         "System.Linq.Dynamic.nuspec"
       ]
     },
@@ -2332,7 +2332,7 @@
     "": [
       "Microsoft.AspNet.Mvc.Core >= 6.0.0-beta7",
       "Microsoft.AspNet.Mvc.TagHelpers >= 6.0.0-beta7",
-      "System.Linq.Dynamic >= 1.0.4",
+      "System.Linq.Dynamic >= 1.0",
       "TagHelpers >= 1.0.0-*"
     ],
     "DNX,Version=v4.5.1": []
