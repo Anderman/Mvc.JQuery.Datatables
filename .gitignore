@@ -231,3 +231,6 @@ $RECYCLE.BIN/
 *.lnk
 *.lock.json
 _references.js
+test/Mvc6.Jquery.DataTables.Tests/project.lock.json
+Sample/UserManagement/project.lock.json
+test/Mvc6.Jquery.DataTables.Tests/project.lock.json

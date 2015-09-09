@@ -21,12 +21,12 @@
         "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta7",
         "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta7",
         "Microsoft.Framework.Configuration.Json": "1.0.0-beta7",
+        "TagHelpers": "1.0.0-beta7",
         "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta7",
         "Microsoft.Framework.Logging": "1.0.0-beta7",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta7",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta7",
         "Mvc6.JQuery.Datatables": "1.0.0-*",
-        "TagHelpers": "1.0.0-*",
         "Microsoft.Framework.SecretManager": "1.0.0-beta7",
         "Microsoft.ApplicationInsights.AspNet": "1.0.0-beta7"
     },

@@ -7,9 +7,9 @@
     "licenseUrl": "",
     "dependencies": {
         "Moq": "4.2.1312.1622",
-        "xunit.runner.aspnet": "2.0.0-aspnet-*",
+        "xunit.runner.aspnet": "2.0.0-aspnet-beta7-15521",
         "Microsoft.AspNet.TestHost": "1.0.0-beta7",
-        "Mvc6.JQuery.Datatables": "1.0.0-*"
+        "Mvc6.JQuery.Datatables": "1.0.0-beta7"
     },
     "commands": {
         "test": "xunit.runner.aspnet"
