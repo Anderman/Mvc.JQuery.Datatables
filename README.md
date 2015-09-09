@@ -1,6 +1,6 @@
 # Mvc.JQuery.Datatables (MVC6 with taghelpers)
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square) [![nuget package](https://img.shields.io/nuget/v/helpers.mvc.png?style=flat-square)](https://www.nuget.org/packages/Mvc6.JQuery.Datatables)
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![nuget package](https://img.shields.io/badge/nuget-beta7-yellow.svg)](https://www.nuget.org/packages/Mvc6.JQuery.Datatables)
 
 
 ##1. Install Package
