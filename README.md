@@ -1,28 +1,37 @@
 # Mvc.JQuery.Datatables (MVC6 with taghelpers)
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square) [![nuget package](https://img.shields.io/nuget/v/helpers.mvc.png?style=flat-square)](https://www.nuget.org/packages/Mvc6.JQuery.Datatables)
+
+
 ##1. Install Package
 
+To install, run the following command in the Package Manager Console.
+
+```csharp
 PM> Install-Package Mvc6.JQuery.Datatables -Pre
+```
+##2. Configuration
+Add the following to the `_ViewImports.cshtml` file
 
-__add the taghelper support to _ViewImports.cshtml and/or _GlobalImport.cshtml__
-
+```csharp
 @addTagHelper "*, Mvc6.JQuery.Datatables"
+```
 
-##2. Create a controller action in your controller 
+##3. Create a controller action in your controller 
 ```
         public JsonResult GetAll([FromBody]DataTablesRequest dTRequest)=>
             new DataTables().GetJSonResult(Ctx.Users, dTRequest);
 ```
 
-##3. create a view.
+##4. create a view.
 ![](http://snag.gy/10cQg.jpg)
 
 
-##4 Add the following javascript to your project
+##5 Add the following javascript to your project
 ```
 http://mvcjquerydatatables.azurewebsites.net/js/mvc.jquery.datatables.js
 ```
-##5. Run your project
+##6. Run your project
 ![](http://snag.gy/aETVt.jpg)
 
 ##6. See Demo
