@@ -5,7 +5,7 @@
   - build.cmd install
   environment:
     DNX_FEED: https://www.nuget.org/api/v2
-    BUILDCMD_RELEASE: beta6
+    BUILDCMD_RELEASE: beta7
     NUGET_PUBLISH_FEED: https://nuget.org/
 
 - branches:
@@ -16,7 +16,7 @@
   on_finish: 
   version: 1.0.{build}
   environment:
-    BUILDCMD_RELEASE: beta6
+    BUILDCMD_RELEASE: beta7
     DNX_FEED: https://www.nuget.org/api/v2
     access_token:
       secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
