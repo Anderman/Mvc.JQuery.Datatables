@@ -5,12 +5,16 @@
     ViewBag.Title = "Users";
 }
 
-<table id="Users" class="table datatables table-striped table-bordered" cellspacing="0" width="100%" role="grid" style="width: 100%;" data-edit="/User/Edit/" data-create="/User/Create/" data-delete="/User/Delete/"
+<table id="Users" class="table datatables table-striped table-bordered" cellspacing="0" width="100%" role="grid" style="width: 100%;"
+       asp-datatables-edit="/User/Edit/"
+       asp-datatables-create="/User/Create/"
+       asp-datatables-edit-row-select="true"
+       asp-datatables-delete="/User/Delete/"
+       asp-datatables-create-button="true"
        asp-datatables-language='getLanguage'
        asp-datatables-lengthmenu='getLengthMenu'
        asp-datatables-url="/User/Index"
        data-dom='<"row"<"col-sm-6"T>r<"col-sm-6>"f>><"row"t><"row"<"col-sm-4"l><"col-sm-4"i><"col-sm-4"p>>'
-       data-tabletools="CUD"
        asp-datatables-savestate="true">
     <thead>
         <tr>
@@ -18,9 +22,10 @@
             <th asp-datatables-data="EmailConfirmed"></th>
             <th asp-datatables-data="LockoutEnd" asp-datatables-render="formatDate" data-mvc6-arg="yyyy-mm-dd hh:mm"></th>
             <th asp-datatables-data="TwoFactorEnabled" asp-datatables-orderable="false"></th>
-            <th asp-datatables-data="UserName" asp-datatables-searchable="false"> </th>
-            <th asp-datatables-data="Logins" asp-datatables-searchable="false" asp-datatables-render="[, ].LoginProvider"> </th>
-            <th asp-datatables-data="Roles" asp-datatables-searchable="false" asp-datatables-render="[, ].Name"> </th>
+            <th asp-datatables-data="UserName" asp-datatables-searchable="true"> </th>
+            <th asp-datatables-data="Logins" asp-datatables-orderable="false" asp-datatables-searchable="false" asp-datatables-render="[, ].LoginProvider"> </th>
+            <th asp-datatables-data="Roles" asp-datatables-orderable="false" asp-datatables-searchable="false" asp-datatables-render="[, ].Name"> </th>
+            <th data-data="Email" asp-datatables-orderable="false" asp-datatables-render="editDeleteButton">edit/delete</th>
         </tr>
     </thead>
 </table>

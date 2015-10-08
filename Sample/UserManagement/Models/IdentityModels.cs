@@ -30,7 +30,7 @@ namespace UserManagement.Models
         public virtual ApplicationUser Role { get; set; }
     }
 
-        public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         protected override void OnModelCreating(ModelBuilder builder)
         {

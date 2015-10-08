@@ -7,6 +7,19 @@ var mvc = { 'JQuery': { 'Datatables': { ajax: {}, tableTools: {}, column: {} } }
 mvc.JQuery.Datatables.column.createMailToLink = function (data, type, full, meta) {
     return '<a href=mailto:' + data + '>' + data + '</a>';
 }
+mvc.JQuery.Datatables.column.editButton = function (data, type, full, meta) {
+    //return '<div class="btn btn-primary btn-sm edit">Edit</div>';
+    return '<i class="mdi-content-create edit" ></i>';
+}
+mvc.JQuery.Datatables.column.deleteButton = function (data, type, full, meta) {
+    //return '<div class="btn btn-primary btn-sm edit">Edit</div>';
+    return '<i class="mdi-content-remove-circle delete" ></i>';
+}
+mvc.JQuery.Datatables.column.editDeleteButton = function (data, type, full, meta) {
+    //return '<div class="btn btn-primary btn-sm edit">Edit</div>';
+    return '<i class="mdi-content-create edit" ></i><i class="mdi-content-remove-circle delete" ></i>';
+}
+
 mvc.JQuery.Datatables.column.formatDate = function (data, type, full, meta) {
     return data ? window.moment(data).format(meta.settings.aoColumns[meta.col].mvc6Par || 'YY-DD-mm hh:mm:ss') : null;
 }

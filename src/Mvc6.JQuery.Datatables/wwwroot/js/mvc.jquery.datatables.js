@@ -4,9 +4,14 @@
     MvcDatatable: function (options) {
         var connect = {};//give tabletool access to datatable to redraw the table after save form and datatable access to tabletools to fix disable button bug
         var $datatable = $(this);
+        var datatable = this;
         var createLink = $datatable.attr('data-create');
         var editLink = $datatable.attr('data-edit');
         var deleteLink = $datatable.attr('data-delete');
+        var editLinkRowSelect = $datatable.attr('data-edit-row-select');
+        var showEditButton = $datatable.attr('data-edit-button');
+        var showCreateButton = $datatable.attr('data-create-button');
+        var showDeleteButton = $datatable.attr('data-delete-button');
         var getRenderInfo = function () {
             var columns = [];
             $($datatable.find('thead > tr > th[data-data]')).each(function () {
@@ -49,11 +54,13 @@
             fnInit: function () {
                 connect.tableTools = this;
             },
-            fnClick: function (nButton, oConfig) {
-                if (this.fnGetSelected().length === 1) {
-                    var id = this.fnGetSelectedData()[0].Id;
+            fnClick: function (nButton, oConfig, selected) {
+                if (!selected)
+                    selected = this.fnGetSelectedData();
+                if (selected.length === 1) {
+                    var id = selected[0].Id;
                     $('#ajaxForm').ajaxForm({
-                        url: editLink + id,
+                        url: (editLink) + id,
                         leaveMessage: options.leaveMessage,
                         error: options.error,
                         dataChanged: function () {
@@ -84,15 +91,17 @@
             }
         }
         var deleteButton = {
-            sExtends: 'select_single',
+            sExtends: 'select',
             sButtonClass: 'btn btn-primary btn-raised disabled',
             sButtonText: 'Delete',
             fnInit: function () {
                 connect.tableTools = this;
             },
-            fnClick: function (nButton, oConfig) {
-                if (this.fnGetSelected().length >= 1) {
-                    var id = this.fnGetSelectedData()[0].Id;
+            fnClick: function (nButton, oConfig, selected) {
+                if (!selected)
+                    selected = this.fnGetSelectedData();
+                for (i = 0; i < selected.length; i++) {
+                    var id = selected[i].Id;
                     $('#ajaxForm').ajaxForm({
                         url: deleteLink + id,
                         leaveMessage: options.leaveMessage,
@@ -105,13 +114,20 @@
                 }
             }
         }
-
         var buttons = [];
-        if (createLink)
+        $(this).on('click', 'tbody tr', function (e) {
+            if (e.target.tagName !== 'A' && editLinkRowSelect
+                || $(e.target).hasClass('edit')
+                )
+                editButton.fnClick(null, null, [$datatable.DataTable().data()[$(this)[0]._DT_RowIndex]]);
+            if ($(e.target).hasClass('delete'))
+                deleteButton.fnClick(null, null, [$datatable.DataTable().data()[$(this)[0]._DT_RowIndex]]);
+        });
+        if (showCreateButton)
             buttons.push(createButton);
-        if (editLink)
+        if (showEditButton)
             buttons.push(editButton);
-        if (deleteLink)
+        if (showDeleteButton)
             buttons.push(deleteButton);
         var ttOptions = {
             sRowSelect: 'os',
