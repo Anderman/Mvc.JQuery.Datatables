@@ -3,10 +3,10 @@ using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 
 namespace Mvc.JQuery.Datatables.TagHelpers
 {
-    [TargetElement("table", Attributes = "asp-datatables-language")]
-    [TargetElement("table", Attributes = "asp-datatables-lengthmenu")]
-    [TargetElement("table", Attributes = "asp-datatables-savestate")]
-    [TargetElement("table", Attributes = "asp-datatables-url")]
+    [HtmlTargetElement("table", Attributes = "asp-datatables-language")]
+    [HtmlTargetElement("table", Attributes = "asp-datatables-lengthmenu")]
+    [HtmlTargetElement("table", Attributes = "asp-datatables-savestate")]
+    [HtmlTargetElement("table", Attributes = "asp-datatables-url")]
     
     public class TableTagHelper : TagHelper
     {

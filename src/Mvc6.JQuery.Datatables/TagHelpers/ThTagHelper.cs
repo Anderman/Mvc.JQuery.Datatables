@@ -4,11 +4,11 @@ using Microsoft.AspNet.Razor.Runtime.TagHelpers;
 using Anderman.TagHelpers;
 namespace Mvc.JQuery.Datatables.TagHelpers
 {
-    [TargetElement("th", Attributes = "asp-datatables-data")]
-    [TargetElement("th", Attributes = "asp-datatables-render")]
-    [TargetElement("th", Attributes = "asp-datatables-render-arg")]
-    [TargetElement("th", Attributes = "asp-datatables-orderable")]
-    [TargetElement("th", Attributes = "asp-datatables-searchable")]
+    [HtmlTargetElement("th", Attributes = "asp-datatables-data")]
+    [HtmlTargetElement("th", Attributes = "asp-datatables-render")]
+    [HtmlTargetElement("th", Attributes = "asp-datatables-render-arg")]
+    [HtmlTargetElement("th", Attributes = "asp-datatables-orderable")]
+    [HtmlTargetElement("th", Attributes = "asp-datatables-searchable")]
     public class ThTagHelper : TagHelper
     {
         [HtmlAttributeName("asp-datatables-data")]
