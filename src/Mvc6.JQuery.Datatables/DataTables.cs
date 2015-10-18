@@ -11,7 +11,7 @@ namespace Mvc.JQuery.Datatables
             var totalRecords = query.Count(); //Execute this query
 
             var modelProperties = ModelProperties<TSource>.Properties;
-            query = DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
+           // query = DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
             var totalDisplayRecords = query.Count(); //Execute this query
 
             var skipped = query.Skip(param.Start);
@@ -28,7 +28,8 @@ namespace Mvc.JQuery.Datatables
 
         public JsonResult GetJSonResult<TSource>(IQueryable<TSource> query, DataTablesRequest param)
         {
-            return new JsonResult(GetResponse(query, param));
+            var result = GetResponse(query, param);
+            return new JsonResult(result);
         }
     }
 }

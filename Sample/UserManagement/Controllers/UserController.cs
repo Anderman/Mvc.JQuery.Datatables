@@ -46,21 +46,8 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public JsonResult Index([FromBody]DataTablesRequest dTRequest)
         {
-            //List<string> roles;
-
-            //.Join(DbContext.Roles, ur => ur.Roles, r => r.Id, (ur, Roles) => new { ur, Roles })
-            //var q = DbContext.Users.Include(u => u.Logins).Include(u => u.Roles).Join(DbContext.Roles, ur => ur.Roles.RoleId, r => r.Id, (ur, Roles) => new { ur, Roles });
-
-            //var q = DbContext.Users.Include(u => u.Roles).Select(u=>u.Roles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, Roles) => new { ur, Roles }));
-            //var q = DbContext.Users.Include(u => u.Logins).Include(u => u.Roles).Select(u=>new {u.Email, RoleName=u.Roles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, Roles) => new { Roles.Name }) });
-            var q = DbContext.Users.Include(u => u.Logins).ToArray();
-            //var qq = DbContext.Roles.ToArray();
-            //var qq = DbContext.Users.Include(u => u.Logins).Include(u => u.Roles);
-            //var arr = q.ToArray();
-            //var z = new JsonResult(q.ToArray()); 
-            //var qq = q.Join(DbContext.Roles, ur => ur.Roles.Select(a=>a.RoleId), r => r.Id, (ur, Roles) => new { ur, Roles });
-            var yy = DbContext.UserRoles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => new { r.Name, ur.UserId });
-            var z = (from u in DbContext.Users//.Include(l => l.Logins).Include(r => r.Roles)
+            var userRoleNames = DbContext.UserRoles.Join(DbContext.Roles, ur => ur.RoleId, r => r.Id, (ur, r) => new { r.Name, ur.UserId });
+            var z = (from u in DbContext.Users
                      select new
                      {
                          u.Id,
@@ -69,9 +56,8 @@ namespace UserManagement.Controllers
                          u.UserName,
                          u.TwoFactorEnabled,
                          u.LockoutEnd,
-                         Logins = u.Logins.Select(l => new { LoginProvider = l.LoginProvider }),
-                         Roles = yy.Where(ur => ur.UserId == u.Id),
-                         //Roles = u.Roles.Join(DbContext.Roles, ur => ur.RoleId, rr => rr.Id, (ur, role2) => role2).Select(rr => rr),
+                         Logins = DbContext.UserLogins.Where(ul => ul.UserId == u.Id).Select(ul=>new { LoginProvider = ul.LoginProvider }) ,//u.Logins.Select(l => new { LoginProvider = l.LoginProvider }).ToArray(), // rewrite to workarounf bug
+                         Roles = userRoleNames.Where(ur => ur.UserId == u.Id).Select(ur=>new { Name=ur.Name}),
                      });
             var zz = z.ToArray();
             return new DataTables().GetJSonResult(
@@ -88,8 +74,7 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create(ApplicationUser model)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 await _userManager.CreateAsync(model);
 
                 return new EmptyResult();
@@ -110,8 +95,7 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Edit(ApplicationUser model)
         {
-            if (ModelState.IsValid)
-            {
+            if (ModelState.IsValid) {
                 var user = await _userManager.FindByIdAsync(model.Id);
                 user.AccessFailedCount = model.AccessFailedCount;
                 user.Email = model.Email;

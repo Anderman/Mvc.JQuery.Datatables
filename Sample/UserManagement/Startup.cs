@@ -36,6 +36,7 @@ namespace UserManagement
                 .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+
             if (env.IsDevelopment())
             {
                 // This reads the configuration keys from the secret store.  file:\\%APPDATA%\microsoft\UserSecrets\<applicationId>\secrets.json 
@@ -43,16 +44,14 @@ namespace UserManagement
                 builder.AddUserSecrets();
             }
             builder.AddEnvironmentVariables();
-            builder.AddApplicationInsightsSettings(developerMode: true);
             Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry(Configuration);
             // Add Entity Framework services to the services container.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -73,21 +72,6 @@ namespace UserManagement
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Configure the options for the authentication middleware.
-            // You can add options for Google, Twitter and other middleware as shown below.
-            // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            //services.Configure<FacebookAuthenticationOptions>(options =>
-            //{
-            //    options.AppId = Configuration["Authentication:Facebook:AppId"];
-            //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            //});
-
-            //services.Configure<MicrosoftAccountAuthenticationOptions>(options =>
-            //{
-            //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
-            //    options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
-            //});
-
             // Add MVC services to the services container.
             services.AddMvc();
 
@@ -103,14 +87,9 @@ namespace UserManagement
         // Configure is called after ConfigureServices is called.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-
             loggerFactory.MinimumLevel = LogLevel.Debug;
-            //loggerFactory.AddConsole();
-            // Add the console logger.
-            loggerFactory.AddConsole(minLevel: LogLevel.Warning);
-
-            app.UseApplicationInsightsExceptionTelemetry();
-            //loggerFactory.AddProvider(new SqlLoggerProvider());
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
 
             // Configure the HTTP request pipeline.
 
@@ -130,18 +109,38 @@ namespace UserManagement
             app.EnsureMigrationsApplied();
             app.EnsureSampleData().Wait();
 
+            // Add the platform handler to the request pipeline.
+            app.UseIISPlatformHandler();
+
             // Add static files to the request pipeline.
             app.UseStaticFiles();
 
             // Add cookie-based authentication to the request pipeline.
             app.UseIdentity();
 
-            // Add authentication middleware to the request pipeline. You can configure options such as Id and Secret in the ConfigureServices method.
+            // Add and configure the options for authentication middleware to the request pipeline.
+            // You can add options for middleware as shown below.
             // For more information see http://go.microsoft.com/fwlink/?LinkID=532715
-            // app.UseFacebookAuthentication();
-            // app.UseGoogleAuthentication();
-            // app.UseMicrosoftAccountAuthentication();
-            // app.UseTwitterAuthentication();
+            //app.UseFacebookAuthentication(options =>
+            //{
+            //    options.AppId = Configuration["Authentication:Facebook:AppId"];
+            //    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //});
+            //app.UseGoogleAuthentication(options =>
+            //{
+            //    options.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //});
+            //app.UseMicrosoftAccountAuthentication(options =>
+            //{
+            //    options.ClientId = Configuration["Authentication:MicrosoftAccount:ClientId"];
+            //    options.ClientSecret = Configuration["Authentication:MicrosoftAccount:ClientSecret"];
+            //});
+            //app.UseTwitterAuthentication(options =>
+            //{
+            //    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+            //    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            //});
 
             // Add MVC to the request pipeline.
             app.UseMvc(routes =>
