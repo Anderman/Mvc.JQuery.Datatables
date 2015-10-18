@@ -25,7 +25,6 @@ namespace Mvc.JQuery.Datatables
                 data = data.Cast<object>().ToArray(),
             };
         }
-
         public JsonResult GetJSonResult<TSource>(IQueryable<TSource> query, DataTablesRequest param)
         {
             var result = GetResponse(query, param);

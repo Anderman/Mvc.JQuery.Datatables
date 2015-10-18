@@ -7,6 +7,8 @@
     DNX_FEED: https://www.nuget.org/api/v2
     BUILDCMD_RELEASE: beta7
     NUGET_PUBLISH_FEED: https://nuget.org/
+    access_token:
+      secure: uun5vAHv3H8Y5bkMZwTSbQKHkJrsdFUGGevXGFAQnWSuBEhtvUFyZw5bHrMTamhF
 
 - branches:
     only:
@@ -19,7 +21,7 @@
     BUILDCMD_RELEASE: beta7
     DNX_FEED: https://www.nuget.org/api/v2
     access_token:
-      secure: eky2kG/ZhEG+YFwZcE5ELS8ZYN/HhbNszojPhV0xO54OjIVBYyctb6oS0yAm5eZ3
+      secure: uun5vAHv3H8Y5bkMZwTSbQKHkJrsdFUGGevXGFAQnWSuBEhtvUFyZw5bHrMTamhF
   cache:
   - sample\usermanagement\node_modules
   - C:\Users\appveyor\.dnx\packages
@@ -35,7 +37,7 @@
   - git config --global user.email thom@kiesewetter.nl
   - git config --global user.name appveyor
   - git config --global push.default simple
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://eb18825bac19311c122d2803008210215f60ee5f:x-oauth-basic@github.com`n"
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
   - git checkout -- *
   - git checkout master
   - git merge dev
