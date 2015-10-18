@@ -11,7 +11,7 @@ namespace Mvc.JQuery.Datatables
             var totalRecords = query.Count(); //Execute this query
 
             var modelProperties = ModelProperties<TSource>.Properties;
-           // query = DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
+            query = DataTablesFiltering.ApplyFilterAndSort(query, modelProperties, param);
             var totalDisplayRecords = query.Count(); //Execute this query
 
             var skipped = query.Skip(param.Start);
