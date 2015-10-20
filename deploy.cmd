@@ -66,9 +66,9 @@ IF DEFINED CLEAN_LOCAL_DEPLOYMENT_TEMP (
   mkdir "%DEPLOYMENT_TEMP%"
 )
 
-IF DEFINED MSBUILD_PATH goto MsbuildPathDefined
-SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
-:MsbuildPathDefined
+IF NOT DEFINED MSBUILD_PATH (
+  SET MSBUILD_PATH=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
+)
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :: Deployment
 :: ----------
@@ -101,9 +101,9 @@ IF !ERRORLEVEL! NEQ 0 goto error
 call %DNX_RUNTIME%\bin\dnu restore "%DEPLOYMENT_SOURCE%" %SCM_DNU_RESTORE_OPTIONS%
 IF !ERRORLEVEL! NEQ 0 goto error
 
-:: 4. Run DNU Bundle
+:: 4. Run DNU Publish
 echo call %DNX_RUNTIME%\bin\dnu publish "D:\home\site\repository\Sample\UserManagement\project.json" --runtime %DNX_RUNTIME% --out "%DEPLOYMENT_TEMP%" %SCM_DNU_PUBLISH_OPTIONS%
-call %DNX_RUNTIME%\bin\dnu publish "D:\home\site\repository\Sample\UserManagement\project.json" --runtime %DNX_RUNTIME% --out "%DEPLOYMENT_TEMP%" %SCM_DNU_PUBLISH_OPTIONS%
+call %DNX_RUNTIME%\bin\dnu publish "D:\home\site\repository\Sample\UserManagement\project.json" --no-source --configuration Release --runtime %DNX_RUNTIME% --out "%DEPLOYMENT_TEMP%" %SCM_DNU_PUBLISH_OPTIONS%
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 5. KuduSync
