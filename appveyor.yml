@@ -9,6 +9,8 @@
     NUGET_PUBLISH_FEED: https://nuget.org/
     access_token:
       secure: 2yEFAtz1ISCey+VU+BGk/bmp4vV97rKpYrte9g5TqDDkXyFRz/flkD+Jzj+QWVjP
+  deploy: off
+  test: off
 
 - branches:
     only:
@@ -31,6 +33,7 @@
   - build.cmd  verify
   - echo end build
   deploy: off
+  test: off
   on_success:
   - echo build success goto deploy
   - git config --global credential.helper store
