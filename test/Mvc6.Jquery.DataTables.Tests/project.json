@@ -9,7 +9,7 @@
         "Microsoft.AspNet.Testing": "1.0.0-beta8-15723",
         "xunit": "2.1.0-*",
         "xunit.runner.dnx": "2.1.0-beta6-build191",
-        "Mvc6.JQuery.Datatables": "1.0.0-beta6"
+        "Mvc6.JQuery.Datatables": "1.0.0-*"
     },
     "commands": {
         "test": "xunit.runner.dnx"
