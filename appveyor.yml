@@ -8,7 +8,7 @@
     BUILDCMD_RELEASE: beta7
     NUGET_PUBLISH_FEED: https://nuget.org/
     access_token:
-      secure: uun5vAHv3H8Y5bkMZwTSbQKHkJrsdFUGGevXGFAQnWSuBEhtvUFyZw5bHrMTamhF
+      secure: 2yEFAtz1ISCey+VU+BGk/bmp4vV97rKpYrte9g5TqDDkXyFRz/flkD+Jzj+QWVjP
 
 - branches:
     only:
@@ -22,7 +22,7 @@
     BUILDCMD_RELEASE: beta7
     DNX_FEED: https://www.nuget.org/api/v2
     access_token:
-      secure: uun5vAHv3H8Y5bkMZwTSbQKHkJrsdFUGGevXGFAQnWSuBEhtvUFyZw5bHrMTamhF
+      secure: 2yEFAtz1ISCey+VU+BGk/bmp4vV97rKpYrte9g5TqDDkXyFRz/flkD+Jzj+QWVjP
   cache:
   - sample\usermanagement\node_modules
   - C:\Users\appveyor\.dnx\packages
