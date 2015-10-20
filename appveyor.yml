@@ -24,10 +24,6 @@
     DNX_FEED: https://www.nuget.org/api/v2
     access_token1:
       secure: 2yEFAtz1ISCey+VU+BGk/bmp4vV97rKpYrte9g5TqDDkXyFRz/flkD+Jzj+QWVjP
-  cache:
-  - sample\usermanagement\node_modules
-  - C:\Users\appveyor\.dnx\packages
-  - C:\Users\appveyor\AppData\Roaming\npm
   build_script:
   - echo start build
   - build.cmd  verify
