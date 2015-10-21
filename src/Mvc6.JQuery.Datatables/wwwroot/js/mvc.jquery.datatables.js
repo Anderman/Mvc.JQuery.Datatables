@@ -63,7 +63,7 @@
                         url: (editLink) + id,
                         leaveMessage: options.leaveMessage,
                         error: options.error,
-                        dataChanged: function () {
+                        dataChanged: function (result) {
                             connect.tableTools.fnSelectNone();//Fix tabletool bug to disable buttons when no row is selected
                             connect.datatable.fnDraw(false);//redraw the table to show the new data
                         }
@@ -83,7 +83,7 @@
                     url: createLink,
                     leaveMessage: options.leaveMessage,
                     error: options.error,
-                    dataChanged: function () {
+                    dataChanged: function (result) {
                         connect.tableTools.fnSelectNone();//Fix tabletool bug to disable buttons when no row is selected
                         connect.datatable.fnDraw(false);//redraw the table to show the new data
                     }
@@ -106,7 +106,7 @@
                         url: deleteLink + id,
                         leaveMessage: options.leaveMessage,
                         error: options.error,
-                        dataChanged: function () {
+                        dataChanged: function (result) {
                             connect.tableTools.fnSelectNone(); //Fix tabletool bug to disable buttons when no row is selected
                             connect.datatable.fnDraw(false); //redraw the table to show the new data
                         }
@@ -116,12 +116,12 @@
         }
         var buttons = [];
         $(this).on('click', 'tbody tr', function (e) {
-            if (e.target.tagName !== 'A' && editLinkRowSelect
+            if ($(e.target).hasClass('delete'))
+                deleteButton.fnClick(null, null, [$datatable.DataTable().data()[$(this)[0]._DT_RowIndex]]);
+            else if (e.target.tagName !== 'A' && editLinkRowSelect
                 || $(e.target).hasClass('edit')
                 )
                 editButton.fnClick(null, null, [$datatable.DataTable().data()[$(this)[0]._DT_RowIndex]]);
-            if ($(e.target).hasClass('delete'))
-                deleteButton.fnClick(null, null, [$datatable.DataTable().data()[$(this)[0]._DT_RowIndex]]);
         });
         if (showCreateButton)
             buttons.push(createButton);
@@ -229,12 +229,12 @@ jQuery.fn.extend({
                     url: $form.attr('action'),
                     data: $form.serialize(),
                     success: function (data) {
-                        if (data) {
-                            initModelForm(data);
+                        if (data && typeof data === 'string') {
+                            initModalForm(data);
                         } else {
                             $(modal).modal('hide');
                             if (typeof (options.dataChanged) === 'function')
-                                options.dataChanged();
+                                options.dataChanged(data);
                         }
                     },
                     error: options.error
@@ -252,7 +252,7 @@ jQuery.fn.extend({
                 }
             });
         }
-        var initModelForm = function (data) {
+        var initModalForm = function (data) {
             if (data) {
                 $(modal).html(data); //load the new form
             }
@@ -284,7 +284,7 @@ jQuery.fn.extend({
                     keyboard: false,
                     show: true
                 });
-                initModelForm();
+                initModalForm();
             }
         });
     }
