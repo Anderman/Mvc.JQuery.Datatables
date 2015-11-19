@@ -6,13 +6,15 @@
     "projectUrl": "",
     "licenseUrl": "",
     "dependencies": {
-        "Microsoft.AspNet.Testing": "1.0.0-beta8-15723",
-        "xunit": "2.1.0-*",
-        "xunit.runner.dnx": "2.1.0-beta6-build191",
-        "Mvc6.JQuery.Datatables": "1.0.0-*"
+        "Mvc6.JQuery.Datatables": "1.0.0-*",
+        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+        "Microsoft.AspNet.Testing": "1.0.0-rc1-final",
+        "Microsoft.Extensions.DependencyInjection": "1.0.0-rc1-final",
+        "Moq": "4.2.1312.1622",
+        "xunit.runner.aspnet": "2.0.0-aspnet-rc1-final"
     },
     "commands": {
-        "test": "xunit.runner.dnx"
+        "test": "xunit.runner.aspnet"
     },
     "frameworks": {
         "dnx451": {

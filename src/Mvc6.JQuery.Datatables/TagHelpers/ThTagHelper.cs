@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.AspNet.Razor.Runtime.TagHelpers;
-using Anderman.TagHelpers;
+//using Anderman.TagHelpers;
+using Microsoft.AspNet.Razor.TagHelpers;
+
 namespace Mvc.JQuery.Datatables.TagHelpers
 {
     [HtmlTargetElement("th", Attributes = "asp-datatables-data")]
@@ -27,7 +28,8 @@ namespace Mvc.JQuery.Datatables.TagHelpers
             if (For != null)
             {
                 output.Attributes.Add("data-data", For.Name);
-                output.Content.Append(For?.Metadata.GetShortName() ?? For?.Metadata.GetDisplayName());
+                //output.Content.Append(For?.Metadata.GetShortName() ?? For?.Metadata.GetDisplayName());
+                output.Content.Append(For?.Metadata.GetDisplayName() ?? For?.Metadata.GetDisplayName());
             }
             if (Renderfunction != null)
                 output.Attributes.Add("data-render", Renderfunction);

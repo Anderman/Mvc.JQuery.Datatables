@@ -1,4 +1,5 @@
-﻿
+﻿// Write your Javascript code.
+
 //This script is the same for each jquery-datatable.
 //Define your own functions to extend the column rendering or custom error/succes message
 

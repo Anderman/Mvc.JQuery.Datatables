@@ -2,7 +2,7 @@
     "repository": {
         "type": "git",
         "url": "git://github.com/anderman/Mvc.JQuery.Datatables.git"
-    },   
+    },
     "description": "Usermanagement Sample.",
     "license": "MIT",
     "author": "Thom Kiesewetter",

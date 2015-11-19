@@ -10,6 +10,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -56,8 +57,8 @@ namespace UserManagement.Controllers
                          u.UserName,
                          u.TwoFactorEnabled,
                          u.LockoutEnd,
-                         Logins = DbContext.UserLogins.Where(ul => ul.UserId == u.Id).Select(ul=>new { LoginProvider = ul.LoginProvider }) ,//u.Logins.Select(l => new { LoginProvider = l.LoginProvider }).ToArray(), // rewrite to workarounf bug
-                         Roles = userRoleNames.Where(ur => ur.UserId == u.Id).Select(ur=>new { Name=ur.Name}),
+                         Logins = DbContext.UserLogins.Where(ul => ul.UserId == u.Id).Select(ul => new { LoginProvider = ul.LoginProvider }),//u.Logins.Select(l => new { LoginProvider = l.LoginProvider }).ToArray(), // rewrite to workarounf bug
+                         Roles = userRoleNames.Where(ur => ur.UserId == u.Id).Select(ur => new { Name = ur.Name }),
                      });
             var zz = z.ToArray();
             return new DataTables().GetJSonResult(
@@ -74,7 +75,8 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create(ApplicationUser model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 await _userManager.CreateAsync(model);
 
                 return new EmptyResult();
@@ -95,7 +97,8 @@ namespace UserManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Edit(ApplicationUser model)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
                 var user = await _userManager.FindByIdAsync(model.Id);
                 user.AccessFailedCount = model.AccessFailedCount;
                 user.Email = model.Email;
