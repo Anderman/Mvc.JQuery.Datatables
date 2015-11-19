@@ -47,11 +47,12 @@ the demo uses a CI integration with appveyor and azure
 ## Why this package.
 There are more MVC packges but they have a different approach.
 problem with other packages.
-* layout is defined in c#, view and javascript
-* Field must be specified in view, controller, javascript
+* layout of the view is defined in the controller, .cshtml  and javascript
+* Field must be specified in view, controller and javascript
 
 This package will make the use of jquery.datatable easier by.
-* Define your fields only in your view (th tag)
+* Define your fields only in your view (th tag in .cshtml)
+* Define your layout only in your .cshtml file
 * Use only one javascript for all your tables
 * Make use of taghelpers for your fields and other options and use intellisense to support your design
 
